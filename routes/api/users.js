@@ -19,7 +19,7 @@ const User = require("../../models/User");
 router.get("/test", (req, res) => res.json({ msg: "User Route Connected" }));
 
 // @route      POST api/users/register
-// @desc       Register users route
+// @desc       Register users
 // @access     Public
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
