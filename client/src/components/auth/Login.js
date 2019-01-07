@@ -8,23 +8,20 @@ class Login extends Component {
       password: "",
       errors: {}
     };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChange(event) {
+  onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-  }
+  };
 
-  onSubmit(event) {
+  onSubmit = event => {
     event.preventDefault();
     const loggedUser = {
       email: this.state.email,
       password: this.state.password
     };
     console.log(loggedUser);
-  }
+  };
 
   render() {
     return (
