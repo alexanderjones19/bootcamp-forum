@@ -4,17 +4,18 @@ import { Link } from "react-router-dom";
 class Landing extends Component {
   render() {
     return (
-      // Landing
+      // Landing Page
       <div className="landing">
         <div className="dark-overlay landing-inner text-light">
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Developer Connector</h1>
+                <h1 className="display-3 mb-4">Like BootCampSpot but Better</h1>
                 <p className="lead">
                   {" "}
-                  Create a developer profile/portfolio, share posts and get help
-                  from other developers
+                  Create and maintain a coding profile/portfolio, ask questions
+                  about code and boot camp in general, stay connected with your
+                  classmates and the broader boot camp community
                 </p>
                 <hr />
                 <Link to="/register" className="btn btn-lg btn-info mr-2">
