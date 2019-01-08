@@ -18,7 +18,7 @@ const User = require("../../models/User");
 // @access     Public
 router.get("/test", (req, res) => res.json({ msg: "Profile Route Connected" }));
 
-// @route      GET api/profiles
+// @route      GET api/profile
 // @desc       Get current user's profile
 // @access     Private
 router.get(
@@ -36,7 +36,7 @@ router.get(
         }
         res.json(profile);
       })
-      .catch(err => res.status(404).json(err));
+      .catch(err => res.status(404).console.log(err));
   }
 );
 
