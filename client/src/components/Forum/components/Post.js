@@ -1,25 +1,27 @@
 import React from 'react';
-import { Media } from 'reactstrap';
+import { NavLink, Card, CardHeader, CardText, CardBody } from 'reactstrap';
+import { NavLink as RRNavLink } from 'react-router-dom';
 
-const userImageStyle = {
-  width: 70,
-  marginRight: 5,
-  marginTop: 5
+let postStyle = {
+  marginTop: 8
+}
+
+let headerStyle = {
+  paddingTop: 2,
+  paddingBottom: 0
 }
 
 const Post = (props) => {
   return ( 
-    <Media>
-      <Media left href="#">
-        <Media style={userImageStyle} object src={props.userImage} alt="user image" />
-      </Media>
-      <Media body>
-        <a href='#'>
-          <Media heading href={props.userName}>{props.userName}</Media>
-        </a>
-        {props.postDescription}
-      </Media>
-    </Media>
+    <Card style={postStyle}>
+      <CardHeader style={headerStyle}><NavLink to="/" tag={RRNavLink}><h5>{props.postTitle}</h5></NavLink></CardHeader>
+      <CardBody>
+        <blockquote className="blockquote mb-0">
+          <CardText>{props.postDescription}</CardText>
+          <footer className="blockquote-footer">{props.userName}</footer>
+        </blockquote>
+      </CardBody>
+    </Card>
   )
 }
 
