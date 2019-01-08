@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.2.1",
+    "commonmark": "^0.28.1",
     "express": "^4.16.4",
     "mongoose": "^5.4.1"
   }
