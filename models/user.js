@@ -1,6 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+<<<<<<< HEAD
+=======
+// Create Schema
+>>>>>>> gfp_branch
 const UserSchema = new Schema({
   name: {
     type: String,
@@ -21,6 +25,7 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+<<<<<<< HEAD
   },
   // Role field
   role: {
@@ -30,3 +35,9 @@ const UserSchema = new Schema({
 });
 
 module.exports = User = mongoose.model('users', UserSchema);
+=======
+  }
+});
+
+module.exports = User = mongoose.model("users", UserSchema);
+>>>>>>> gfp_branch
