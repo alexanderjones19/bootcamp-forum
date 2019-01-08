@@ -1,13 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
 // this makes sure it gives the user a one page application experience
 import { NavLink as RRNavLink } from 'react-router-dom';
 
 
-class Header extends Component{
-
-  render() {
+const Header = props => {
   return (
     <Nav pills>
       <NavItem>  
@@ -30,7 +28,6 @@ class Header extends Component{
       </NavItem>
     </Nav>
   )
-  }
 }
 
 export default Header;

@@ -18,7 +18,7 @@ const displayPostType = props => {
 
 const CreatePost = props => {
   return (
-    <div> {console.log(props.match.params.type)}
+    <div> 
       {displayPostType(props)}
     </div>
   )
