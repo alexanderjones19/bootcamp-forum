@@ -35,3 +35,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   }
 };
+
+
+// Delete this and do controlling within the api routes!

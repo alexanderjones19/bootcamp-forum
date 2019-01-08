@@ -7,6 +7,7 @@ const DiscussionSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'forum'
   },
+  discussion_slug: String,
   user_id: Schema.Types.ObjectId,
   user: {
     type: Schema.Types.ObjectId,
@@ -14,10 +15,13 @@ const DiscussionSchema = new Schema({
   },
   date: Date,
   title: String,
+  // content maybe another type than object?
   content: Object,
   favorites: Array,
   tags: Array,
-  pinned: Boolean
+  pinned: Boolean,
+  //description
+  description: String
 });
 
 module.exports = Discussion = mongoose.model('discussion', DiscussionSchema);
