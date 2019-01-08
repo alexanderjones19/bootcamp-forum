@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import Forum from './components/Forum';
 
 class App extends Component {
   state = {
@@ -25,13 +25,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
-
-        <p className="App-intro">{this.state.data}</p>
-      </div>
+      <Forum />
     );
   }
 }
