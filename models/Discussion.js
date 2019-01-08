@@ -10,7 +10,7 @@ const DiscussionSchema = new Schema({
   user_id: Schema.Types.ObjectId,
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'user'
+    ref: 'users'
   },
   date: Date,
   title: String,
@@ -20,4 +20,4 @@ const DiscussionSchema = new Schema({
   pinned: Boolean
 });
 
-module.exports = Discussion = mongoose.model('discussions', DiscussionSchema);
+module.exports = Discussion = mongoose.model('discussion', DiscussionSchema);

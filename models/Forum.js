@@ -6,4 +6,4 @@ const ForumSchema = new Schema({
   forum_name: String
 });
 
-module.exports = Forum = mongoose.model('forums', ForumSchema);
+module.exports = Forum = mongoose.model('forum', ForumSchema);
