@@ -3,6 +3,8 @@ const router = express.Router();
 
 const Reply = require('../../models/Reply');
 
+// api/reply
+
 // create reply
 router.post('/', (req, res) => {
   Reply.create(req.body)
@@ -35,6 +37,7 @@ router.delete('/:reply_id', (req, res) => {
 // get all replies of a discussion
 router.get('/', (req, res) => {
   Reply.find({ discussion_id: req.query.discussion_id })
+    .sort({ date: -1 })
     .then(replies => res.json(replies))
     .catch(err => res.status(400).json(err));
 });

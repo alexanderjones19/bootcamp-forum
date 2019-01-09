@@ -4,6 +4,8 @@ const router = express.Router();
 // const Forum = require('../../models/Forum');
 const Discussion = require('../../models/Discussion');
 
+// api/discussion
+
 // create discussion
 router.post('/', (req, res) => {
   Discussion.create(req.body)
@@ -36,6 +38,7 @@ router.delete('/:discussion_id', (req, res) => {
 // get all discussions of a forum
 router.get('/', (req, res) => {
   Discussion.find({ forum_id: req.query.forum_id })
+    .sort({ date: -1 })
     .then(discussions => res.json(discussions))
     .catch(err => res.status(400).json(err));
 });

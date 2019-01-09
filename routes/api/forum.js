@@ -5,6 +5,8 @@ const router = express.Router();
 const Forum = require('../../models/Forum');
 // const Discussion = require('../../models/Discussion');
 
+// api/forum
+
 // create forum
 router.post('/', (req, res) => {
   Forum.create(req.body)
@@ -16,7 +18,7 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
   Forum.find()
     .then(forums => res.json(forums))
-    .catch(err => res.status(400).json({ noforumsfound: 'No forums Found' }));
+    .catch(err => res.status(400).json(err));
 });
 
 // update a forum
