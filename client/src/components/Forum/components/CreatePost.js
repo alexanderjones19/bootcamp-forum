@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card, CardBody, Button, Form, FormGroup, Label, Input, CardText } from 'reactstrap';
 
 let postType = null;
 
@@ -20,6 +21,25 @@ const CreatePost = props => {
   return (
     <div> 
       {displayPostType(props)}
+      <br />
+      <Card>
+        <CardBody>
+          <CardText>
+            This forum handle Markdown text format. Enter your post title then on your post description you may use Markdown to enter code or list to describe your issue.
+          </CardText>
+          <Form>
+            <FormGroup>
+              <Label for="txtTitle">Title</Label>
+              <Input type="text" id="txtTitle"  />
+            </FormGroup>
+            <FormGroup>
+              <Label for="txtDescription">Description</Label>
+              <Input type="textarea" id="txtDescription" />
+            </FormGroup>
+            <Button outline color="primary">Post</Button>
+          </Form>
+        </CardBody>
+      </Card>
     </div>
   )
 }
