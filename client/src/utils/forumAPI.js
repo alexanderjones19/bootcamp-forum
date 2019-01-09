@@ -40,7 +40,11 @@ export default {
   },
   // Get all discussions of a forum by forum_id
   getAllDiscussions: (forumId) => {
-    return axios.get('/api/discussion?forum_id=' + forumId);
+    return axios.get('/api/discussion', {
+      params: {
+        forum_id: forumId
+      }
+    });
   },
 
   // Reply
@@ -63,6 +67,10 @@ export default {
   },
   // Get all replies of a discussion by discussion_id
   getAllReplies: (discussionId) => {
-    return axios.get('/api/reply?discussion_id=' + discussionId);
+    return axios.get('/api/reply', {
+      params: {
+        discussion_id: discussionId
+      }
+    });
   }
 };
