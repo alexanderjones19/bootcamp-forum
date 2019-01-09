@@ -14,7 +14,7 @@ class CreateProfile extends Component {
     this.state = {
       displaySocialInputs: false,
       handle: "",
-      company: "",
+      bootcamp: "",
       website: "",
       location: "",
       status: "",
@@ -23,6 +23,7 @@ class CreateProfile extends Component {
       bio: "",
       stackoverflow: "",
       linkedin: "",
+      facebook: "",
       errors: {}
     };
 
@@ -50,7 +51,8 @@ class CreateProfile extends Component {
       bio: this.state.bio,
       stackoverflow: this.state.stackoverflow,
       github: this.state.github,
-      linkedin: this.state.linkedin
+      linkedin: this.state.linkedin,
+      facebook: this.state.facebook
     };
 
     this.props.createProfile(profileData, this.props.history);
@@ -93,6 +95,15 @@ class CreateProfile extends Component {
             value={this.state.github}
             onChange={this.onChange}
             error={errors.github}
+          />
+
+          <InputGroup
+            placeholder="Facebook URL"
+            name="facebook"
+            icon="fab fa-facebook"
+            value={this.state.facebook}
+            onChange={this.onChange}
+            error={errors.facebook}
           />
         </div>
       );
