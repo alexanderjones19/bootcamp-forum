@@ -17,9 +17,11 @@ const ReplySchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
-  date: Date,
-  // maybe content other than Object type?
-  content: Object
+  date: {
+    type: Date,
+    default: Date.now
+  },
+  content: String
 });
 
 module.exports = Reply = mongoose.model('reply', ReplySchema);

@@ -1,25 +1,37 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-// const passport = require("passport");
 
 // models
 const Forum = require('../../models/Forum');
-const Discussion = require('../../models/Discussion');
+// const Discussion = require('../../models/Discussion');
 
-// test route
-router.get("/test", (req, res) => res.json({ msg: "Forum Route Connected" }));
+// create forum
+router.post('/', (req, res) => {
+  Forum.create(req.body)
+    .then(forum => res.json(forum))
+    .catch(err => res.status(400).json(err));
+}); 
 
 // get all forums
 router.get('/', (req, res) => {
   Forum.find()
     .then(forums => res.json(forums))
-    .catch(err => res.status(404).json({ noforumsfound: 'No forums Found' }));
+    .catch(err => res.status(400).json({ noforumsfound: 'No forums Found' }));
 });
 
-// get all discussions of a forum
-router.get('/:forum_id/discussions', (req, res) => {
-  
+// update a forum
+router.put('/:forum_id', (req, res) => {
+  Forum.findOneAndUpdate({ _id: req.params.forum_id }, req.body)
+    .then(forum => res.json(forum))
+    .catch(err => res.status(400).json(err));
+});
+
+// delete a forum
+router.delete('/:forum_id', (req, res) => {
+  Forum.findById({ _id: req.params.forum_id })
+    .then(forum => forum.remove())
+    .then(forum => res.json(forum))
+    .catch(err => res.status(400).json(err));
 });
 
 module.exports = router;

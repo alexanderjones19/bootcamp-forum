@@ -7,6 +7,8 @@ const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
 const forum = require('./routes/api/forum');
+const discussion = require('./routes/api/discussion');
+const reply = require('./routes/api/reply');
 
 const app = express();
 
@@ -34,6 +36,8 @@ app.use("/api/users", users);
 app.use("/api/profile", profile);
 app.use("/api/posts", posts);
 app.use('/api/forum', forum);
+app.use('/api/discussion', discussion);
+app.use('/api/reply', reply);
 
 const port = process.env.PORT || 5000;
 

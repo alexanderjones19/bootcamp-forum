@@ -13,14 +13,15 @@ const DiscussionSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
-  date: Date,
+  date: {
+    type: Date,
+    default: Date.now
+  },
   title: String,
-  // content maybe another type than object?
-  content: Object,
-  favorites: Array,
-  tags: Array,
-  pinned: Boolean,
-  //description
+  content: String,
+  // favorites: Array,
+  // tags: Array,
+  // pinned: Boolean,
   description: String
 });
 
