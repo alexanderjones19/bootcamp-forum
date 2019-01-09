@@ -13,6 +13,11 @@ const Profile = require("../../models/Profile");
 // load User Model
 const User = require("../../models/User");
 
+// @route      GET api/profiles/test
+// @desc       Tests profiles route
+// @access     Public
+router.get("/test", (req, res) => res.json({ msg: "Profile Route Connected" }));
+
 // @route      GET api/profile
 // @desc       Get current user's profile
 // @access     Private
@@ -35,7 +40,7 @@ router.get(
   }
 );
 
-// @route      GET api/profile/all
+// @route      GET api/profiles/all
 // @desc       Get all profiles
 // @access     Public
 router.get("/all", (req, res) => {
