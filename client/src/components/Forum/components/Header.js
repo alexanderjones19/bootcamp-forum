@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, NavItem, Navlink } from 'reactstrap';
+import { Nav, NavItem, NavLink } from 'reactstrap';
 
 // this makes sure it gives the user a one page application experience
 import { NavLink as RRNavlink } from 'react-router-dom';
@@ -7,10 +7,14 @@ import { NavLink as RRNavlink } from 'react-router-dom';
 const Header = props => {
   return (
     <Nav pills>
-      {/* map forums out here as nav items
-      <NavItem>
-
-      </NavItem> */}
+      {props.forums.map(forum => (
+        <NavItem>
+          {window.location.pathname === `/discussion/${forum.forum_slug}` ?
+            <NavLink to={`/discussion/${forum.forum_slug}`} tag={RRNavlink} active>{forum.forum_name}</NavLink> :
+            <NavLink to={`/discussion/${forum.forum_slug}`} tag={RRNavlink}>{forum.forum_name}</NavLink>
+          }
+        </NavItem>
+      ))}
     </Nav>
   )
 }

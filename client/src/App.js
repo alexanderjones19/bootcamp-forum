@@ -16,6 +16,7 @@ import CreateProfile from "./components/create-profile/CreateProfile";
 import EditProfile from "./components/edit-profile/EditProfile";
 import AddExperience from "./components/add-credentials/AddExperience";
 import AddEducation from "./components/add-credentials/AddEducation";
+import Forum from './components/Forum/index';
 import {
   getCurrentProfile,
   clearCurrentProfile
@@ -56,6 +57,7 @@ class App extends Component {
             <Navbar />
             <Route exact path="/" component={Landing} />
             <div className="container">
+              <Route exact path="/forum" component={Forum} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Switch>

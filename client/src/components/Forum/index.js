@@ -30,7 +30,9 @@ class Forum extends Component {
 
         <Router>
           <div>
-            <Header />
+            <Header 
+              forums={this.state.forums}
+            />
             <Switch>
               {/* <Route exact path="/discussion/:type" component={ DiscussionPost }/> */}
               {/* <Route exact path="/discussion/:type/new" component={ CreatePost }/> */}
