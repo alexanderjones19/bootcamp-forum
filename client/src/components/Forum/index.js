@@ -5,6 +5,24 @@ import DiscussionPost from './components/DiscussionPost';
 import CreatePost from './components/CreatePost';
 
 class Forum extends Component {
+  state = {
+    title: "",
+    description: ""
+  }
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handlePostSubmit = event => {
+    event.preventDefault();
+    if(this.state.title) {
+      console.log(this.state);
+    }
+  }
 
   render() {
     return ( 
@@ -14,8 +32,18 @@ class Forum extends Component {
           <div>
             <Header />
             <Switch>
-              <Route exact path="/discussion/:type" component={ DiscussionPost }/>
-              <Route exact path="/discussion/:type/new" component={ CreatePost } />
+              <Route 
+                exact path="/discussion/:type"
+                render={(props) => <DiscussionPost {...props} />} 
+              />
+              <Route 
+                exact path="/discussion/:type/new" 
+                render={
+                  (props) => <CreatePost 
+                              {...props} 
+                              handlePostSubmit={this.handlePostSubmit}
+                              handleInputChange={this.handleInputChange}/>} 
+                              />
             </Switch>
           </div>
         </Router>

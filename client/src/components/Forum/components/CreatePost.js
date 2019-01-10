@@ -30,13 +30,13 @@ const CreatePost = props => {
           <Form>
             <FormGroup>
               <Label for="txtTitle">Title</Label>
-              <Input type="text" id="txtTitle"  />
+              <Input type="text" name="title" id="txtTitle" onChange={props.handleInputChange} />
             </FormGroup>
             <FormGroup>
               <Label for="txtDescription">Description</Label>
-              <Input type="textarea" id="txtDescription" />
+              <Input type="textarea" name="description" onChange={props.handleInputChange} id="txtDescription" />
             </FormGroup>
-            <Button outline color="primary">Post</Button>
+            <Button outline color="primary" onClick={props.handlePostSubmit}>Post</Button>
           </Form>
         </CardBody>
       </Card>
