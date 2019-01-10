@@ -40,7 +40,7 @@ router.get(
   }
 );
 
-// @route      GET api/profiles/all
+// @route      GET api/profile/all
 // @desc       Get all profiles
 // @access     Public
 router.get("/all", (req, res) => {
@@ -114,7 +114,7 @@ router.post(
     const profileFields = {};
     profileFields.user = req.user.id;
     if (req.body.handle) profileFields.handle = req.body.handle;
-    if (req.body.company) profileFields.company = req.body.company;
+    if (req.body.bootcamp) profileFields.bootcamp = req.body.bootcamp;
     if (req.body.website) profileFields.website = req.body.website;
     if (req.body.location) profileFields.location = req.body.location;
     if (req.body.bio) profileFields.bio = req.body.bio;
@@ -128,8 +128,8 @@ router.post(
     }
     // Social
     profileFields.social = {};
-    if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
-    if (req.body.twitter) profileFields.social.twitter = req.body.twitter;
+    if (req.body.stackoverflow)
+      profileFields.social.stackoverflow = req.body.stackoverflow;
     if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin;
     if (req.body.github) profileFields.social.github = req.body.github;
     if (req.body.facebook) profileFields.social.facebook = req.body.facebook;

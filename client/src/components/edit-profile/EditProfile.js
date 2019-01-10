@@ -24,6 +24,7 @@ class CreateProfile extends Component {
       bio: "",
       stackoverflow: "",
       linkedin: "",
+      facebook: "",
       github: "",
       errors: {}
     };
@@ -66,6 +67,9 @@ class CreateProfile extends Component {
       profile.linkedin = !isEmpty(profile.social.linkedin)
         ? profile.social.linkedin
         : "";
+      profile.facebook = !isEmpty(profile.social.facebook)
+        ? profile.social.facebook
+        : "";
 
       // set component fields state
       this.setState({
@@ -79,7 +83,8 @@ class CreateProfile extends Component {
         bio: profile.bio,
         stackoverflow: profile.stackoverflow,
         github: profile.github,
-        linkedin: profile.linkedin
+        linkedin: profile.linkedin,
+        facebook: profile.facebook
       });
     }
   }
@@ -98,7 +103,8 @@ class CreateProfile extends Component {
       bio: this.state.bio,
       stackoverflow: this.state.stackoverflow,
       linkedin: this.state.linkedin,
-      github: this.state.github
+      github: this.state.github,
+      facebook: this.state.facebook
     };
 
     this.props.createProfile(profileData, this.props.history);
@@ -141,6 +147,15 @@ class CreateProfile extends Component {
             value={this.state.github}
             onChange={this.onChange}
             error={errors.github}
+          />
+
+          <InputGroup
+            placeholder="Facebook Profile URL"
+            name="facebook"
+            icon="fab fa-facebook"
+            value={this.state.facebook}
+            onChange={this.onChange}
+            error={errors.facebook}
           />
         </div>
       );

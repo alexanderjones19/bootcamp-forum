@@ -101,17 +101,17 @@ class AddExperience extends Component {
                 <TextFieldGroup
                   name="from"
                   type="date"
-                  value={this.state.handle}
+                  value={this.state.from}
                   onChange={this.onChange}
-                  error={errors.handle}
+                  error={errors.from}
                 />
                 <h6>To Date</h6>
                 <TextFieldGroup
-                  name="from"
+                  name="to"
                   type="date"
-                  value={this.state.handle}
+                  value={this.state.to}
                   onChange={this.onChange}
-                  error={errors.handle}
+                  error={errors.to}
                   disabled={this.state.disabled ? "disabled" : ""}
                 />
                 <div className="form-check mb-4">

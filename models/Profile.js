@@ -12,7 +12,7 @@ const ProfileSchema = new Schema({
     required: true,
     max: 40
   },
-  company: {
+  bootcamp: {
     type: String
   },
   website: {
@@ -95,10 +95,7 @@ const ProfileSchema = new Schema({
     }
   ],
   social: {
-    youtube: {
-      type: String
-    },
-    twitter: {
+    stackoverflow: {
       type: String
     },
     linkedin: {
