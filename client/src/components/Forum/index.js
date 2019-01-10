@@ -4,23 +4,32 @@ import Header from './components/Header';
 import DiscussionPost from './components/DiscussionPost';
 import CreatePost from './components/CreatePost';
 
+let commonmark = require('commonmark');
+
 class Forum extends Component {
   state = {
     title: "",
-    description: ""
+    description: "",
+    category: ""
   }
 
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
+      category: window.location.pathname.split('/')[2]
     });
   }
 
   handlePostSubmit = event => {
     event.preventDefault();
-    if(this.state.title) {
-      console.log(this.state);
+    let reader = new commonmark.Parser();
+    let writer = new commonmark.HtmlRenderer();
+
+    if(this.state.title && this.state.description) {
+      let parsed = reader.parse(this.state.description)
+      console.log(this.state.description);
+      console.log(writer.render(parsed));
     }
   }
 
