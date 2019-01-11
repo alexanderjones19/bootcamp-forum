@@ -22,6 +22,7 @@ class CreateProfile extends Component {
       githubusername: "",
       bio: "",
       stackoverflow: "",
+      github: "",
       linkedin: "",
       facebook: "",
       errors: {}
