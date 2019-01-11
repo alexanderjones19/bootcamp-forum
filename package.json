@@ -1,5 +1,5 @@
 {
-  "name": "bootcampbuster",
+  "name": "bootcamp-forum",
   "version": "1.0.0",
   "description": "Social Network for Coding Boot Camp Students",
   "main": "server.js",

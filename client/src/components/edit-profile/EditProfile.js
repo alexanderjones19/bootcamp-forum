@@ -53,6 +53,7 @@ class CreateProfile extends Component {
       profile.bootcamp = !isEmpty(profile.bootcamp) ? profile.bootcamp : "";
       profile.website = !isEmpty(profile.website) ? profile.website : "";
       profile.location = !isEmpty(profile.location) ? profile.location : "";
+      profile.status = !isEmpty(profile.status) ? profile.status : "";
       profile.githubusername = !isEmpty(profile.githubusername)
         ? profile.githubusername
         : "";
