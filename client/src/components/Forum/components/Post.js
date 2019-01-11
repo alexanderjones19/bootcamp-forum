@@ -14,7 +14,7 @@ let headerStyle = {
 const Post = (props) => {
   return ( 
     <Card style={postStyle}>
-      <CardHeader style={headerStyle}><NavLink to="/" tag={RRNavLink}><h5>{props.postTitle}</h5></NavLink></CardHeader>
+      <CardHeader style={headerStyle}><NavLink to={`${window.location.pathname}/${props.postId}`} tag={RRNavLink}><h5>{props.postTitle}</h5></NavLink></CardHeader>
       <CardBody>
         <blockquote className="blockquote mb-0">
           <CardText>{props.postDescription}</CardText>

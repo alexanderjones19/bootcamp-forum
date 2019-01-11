@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from './components/Header';
 import DiscussionPost from './components/DiscussionPost';
 import CreatePost from './components/CreatePost';
+import discussion from './discussion.json';
+import ViewPost from './components/ViewPost';
 
 let commonmark = require('commonmark');
 
@@ -10,7 +12,8 @@ class Forum extends Component {
   state = {
     title: "",
     description: "",
-    category: ""
+    category: "",
+    discussion: discussion
   }
 
   handleInputChange = event => {
@@ -28,8 +31,20 @@ class Forum extends Component {
 
     if(this.state.title && this.state.description) {
       let parsed = reader.parse(this.state.description)
-      console.log(this.state.description);
-      console.log(writer.render(parsed));
+      let newDiscussion = this.state.discussion.slice();
+
+      newDiscussion.push({
+        userName: "test",
+        userImage: "...",
+        postTitle: this.state.title,
+        postDescription: this.state.description,
+        postCategory: this.state.category,
+        postId: 5
+      });
+
+      this.setState({
+        discussion: newDiscussion
+      });
     }
   }
 
@@ -43,7 +58,7 @@ class Forum extends Component {
             <Switch>
               <Route 
                 exact path="/discussion/:type"
-                render={(props) => <DiscussionPost {...props} />} 
+                render={(props) => <DiscussionPost {...props} discussion={this.state.discussion} />} 
               />
               <Route 
                 exact path="/discussion/:type/new" 
@@ -53,6 +68,10 @@ class Forum extends Component {
                               handlePostSubmit={this.handlePostSubmit}
                               handleInputChange={this.handleInputChange}/>} 
                               />
+              <Route 
+                exact path="/discussion/:type/:id" 
+                render={props => <ViewPost {...props} discussion={this.state.discussion} /> }
+              />
             </Switch>
           </div>
         </Router>
