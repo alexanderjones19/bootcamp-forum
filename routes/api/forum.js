@@ -36,4 +36,11 @@ router.delete('/:forum_id', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
+// get forum by slug
+router.get('/:forum_slug', (req, res) => {
+  Forum.findOne({ forum_slug: req.params.forum_slug })
+    .then(forum => res.json(forum))
+    .catch(err => res.status(400).json(err));
+});
+
 module.exports = router;

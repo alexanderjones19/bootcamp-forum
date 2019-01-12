@@ -1,12 +1,4 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
-
-export default class ProfileItem extends Component {
-  render() {
-    return <div />;
-  }
-}
-=======
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import isEmpty from "../../validation/is-empty";
@@ -64,4 +56,3 @@ ProfileItem.propTypes = {
 };
 
 export default ProfileItem;
->>>>>>> d9bef43d1bd4ffdc2678b5ec46708238f9e99983

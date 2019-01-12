@@ -36,8 +36,10 @@ router.delete('/:reply_id', (req, res) => {
 
 // get all replies of a discussion
 router.get('/', (req, res) => {
-  Reply.find({ discussion_id: req.query.discussion_id })
+  Reply.find({ discussion_slug: req.query.discussion.discussion_slug })
     .sort({ date: -1 })
+    // .populate('forum')
+    // .populate('user')
     .then(replies => res.json(replies))
     .catch(err => res.status(400).json(err));
 });
