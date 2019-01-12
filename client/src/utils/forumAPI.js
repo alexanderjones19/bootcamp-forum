@@ -19,6 +19,10 @@ export default {
   deleteForum: (forumId) => {
     return axios.delete('/api/forum/' + forumId);
   },
+  // Get forum by slug
+  getForumBySlug: (forumSlug) => {
+    return axios.get('/api/forum/' + forumSlug);
+  },
 
   // Discussion
 
@@ -39,10 +43,10 @@ export default {
     return axios.delete('/api/discussion/' + discussionId);
   },
   // Get all discussions of a forum by forum_id
-  getAllDiscussions: (forumId) => {
+  getAllDiscussions: (forumSlug) => {
     return axios.get('/api/discussion', {
       params: {
-        forum_id: forumId
+        forum_slug: forumSlug
       }
     });
   },
@@ -66,10 +70,10 @@ export default {
     return axios.delete('/api/reply/' + replyId);
   },
   // Get all replies of a discussion by discussion_id
-  getAllReplies: (discussionId) => {
+  getAllReplies: (discussionSlug) => {
     return axios.get('/api/reply', {
       params: {
-        discussion_id: discussionId
+        discussion_slug: discussionSlug
       }
     });
   }
