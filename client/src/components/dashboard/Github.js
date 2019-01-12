@@ -35,7 +35,6 @@ class Github extends Component {
 
   render() {
     const repos1 = this.state.repos.map(repo => (
-      <div style={{ marginBottom: "20px"}}>
         <div className="card text-center">
           <div className="card-body">
             <h5 className="card-title">{repo.name}</h5>
@@ -43,7 +42,6 @@ class Github extends Component {
             <a href={repo.url} class="btn btn-dark">Go</a>
           </div>
         </div>
-      </div>
     ));
 
     return (
