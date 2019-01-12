@@ -4,37 +4,54 @@ import PropTypes from "prop-types";
 import githubAPI from "../../utils/githubAPI";
 
 class Github extends Component {
-  repos = [];
+  state = {
+    repos: []
+  }
+
+  componentDidMount() {
+    this.getRepos();
+  }
 
   getRepos = () => {
     const github = this.props.github;
     githubAPI.getRepos(github)
     .then(res => {
-      console.log(res.data);
-      for(let i=0; i<5 || i<res.length; i++){
+      console.log(res);
+      let repoCont = [];
+      for(let i=0; i<18 || i<res.length; i++){
         let repo = {};
         repo.name = res.data[i].name;
-        repo.url = res.data[i].url;
+        repo.url = res.data[i].html_url;
         repo.desc = res.data[i].description;
-        this.repos.push(repo);
+        repoCont.push(repo);
       }
-      return this.repos;
+      console.log(repoCont);
+      this.setState({
+        repos: repoCont
+      })
     });
   }
 
 
   render() {
-    // const repos = this.repos.map(repo => (
-    //   <tr>
-    //     <td>{repo.name}</td>
-    //     <td>{repo.desc}</td>
-    //     <td>{repo.url}</td>
-    //   </tr>
-    // ));
+    const repos1 = this.state.repos.map(repo => (
+      <div style={{ marginBottom: "20px"}}>
+        <div className="card text-center">
+          <div className="card-body">
+            <h5 className="card-title">{repo.name}</h5>
+            <p className="card-text">{repo.desc}</p>
+            <a href={repo.url} class="btn btn-dark">Go</a>
+          </div>
+        </div>
+      </div>
+    ));
+
     return (
       <div>
         <h4 className="mb-4">Github Repos</h4>
-        <h5> {this.repos} </h5>
+        <div className="card-columns">
+        <p> {repos1} </p>
+        </div>
       </div>
     );
   }
