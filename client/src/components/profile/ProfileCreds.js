@@ -4,7 +4,7 @@ class ProfileCreds extends Component {
   render() {
     return (
       <div>
-        <h1>Create Profile Credentials</h1>
+        <h1>Create Profile Experience</h1>
       </div>
     );
   }
