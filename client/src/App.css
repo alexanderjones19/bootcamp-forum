@@ -2,11 +2,20 @@ img {
   width: 100%;
 }
 
+hr {
+  background: white;
+}
+
+.homeList:hover {
+  background: #5bc0de;
+  color: white;
+}
+
 .landing {
   position: relative;
-  background: url("./img/showcase.jpg") no-repeat;
+  background: url("./img/acheivementImage.jpg") no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: left;
   height: 100vh;
   margin-top: -24px;
   margin-bottom: -50px;
