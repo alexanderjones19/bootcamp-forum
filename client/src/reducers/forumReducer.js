@@ -8,6 +8,10 @@ import{
   GET_DISCUSSIONS,
   GET_DISCUSSIONS_SUCCESS,
   GET_DISCUSSIONS_FAIL,
+  HANDLE_INPUT_CHANGE,
+  CREATE_DISCUSSION,
+  CREATE_DISCUSSION_SUCCESS,
+  CREATE_DISCUSSION_FAIL,
 } from '../actions/types';
 
 const initialState = {
@@ -16,7 +20,11 @@ const initialState = {
   currentForum: {},
   replies: [],
   loading: false,
-  errors: null
+  errors: null,
+  newDiscussionForm: {
+    title: '',
+    content: ''
+  }
 };
 
 export default function(state = initialState, action) {
@@ -68,6 +76,29 @@ export default function(state = initialState, action) {
         loading: false
       };
     case GET_DISCUSSIONS_FAIL:
+      return {
+        ...state,
+        errors: action.payload,
+        loading: false
+      };
+    case HANDLE_INPUT_CHANGE:
+      return {
+        ...state,
+        newDiscussionForm: {...state.newDiscussionForm, ...action.payload}
+      };
+    case CREATE_DISCUSSION:
+      return {
+        ...state,
+        loading: true
+      };
+    case CREATE_DISCUSSION_SUCCESS:
+      let newDiscussions = [action.payload].concat(state.discussions);
+      return {
+        ...state,
+        discussions: newDiscussions,
+        loading: false
+      };
+    case CREATE_DISCUSSION_FAIL:
       return {
         ...state,
         errors: action.payload,

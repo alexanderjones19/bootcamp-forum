@@ -38,7 +38,7 @@ class DiscussionPost extends Component {
 }
 
 const mapDispatchToProps = {
-  getAllDiscussions,
+  getAllDiscussions
 }
 
 const mapStateToProps = state => ({

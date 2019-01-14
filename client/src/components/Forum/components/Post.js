@@ -18,7 +18,7 @@ const Post = (props) => {
       <CardBody>
         <blockquote className="blockquote mb-0">
           <CardText>{props.discussion.content}</CardText>
-          <footer className="blockquote-footer">{props.userName}</footer>
+          <footer className="blockquote-footer">{props.discussion.user.name}</footer>
         </blockquote>
       </CardBody>
     </Card>

@@ -9,7 +9,11 @@ const Discussion = require('../../models/Discussion');
 // create discussion
 router.post('/', (req, res) => {
   Discussion.create(req.body)
-    .then(discussion => res.json(discussion))
+    .then(discussion => {
+      discussion.populate('user').populate('forum', (err) => {
+        res.json(discussion);
+      });
+    })
     .catch(err => res.status(400).json(err));
 });
 

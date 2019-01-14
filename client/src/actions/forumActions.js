@@ -8,6 +8,10 @@ import {
   GET_DISCUSSIONS,
   GET_DISCUSSIONS_SUCCESS,
   GET_DISCUSSIONS_FAIL,
+  HANDLE_INPUT_CHANGE,
+  CREATE_DISCUSSION,
+  CREATE_DISCUSSION_SUCCESS,
+  CREATE_DISCUSSION_FAIL,
 } from './types';
 import forumAPI from '../utils/forumAPI';
 
@@ -29,6 +33,7 @@ export const getAllForums = () => dispatch => {
     });
 };
 
+// get one forum by slug
 export const getOneForum = (forumSlug) => dispatch => {
   dispatch({ type: GET_ONE_FORUM });
   forumAPI.getForumBySlug(forumSlug)
@@ -46,6 +51,7 @@ export const getOneForum = (forumSlug) => dispatch => {
     });
 };
 
+// get all discussions by forum slug
 export const getAllDiscussions = (forumSlug) => dispatch => {
   dispatch({ type: GET_DISCUSSIONS });
   forumAPI.getAllDiscussions(forumSlug)
@@ -58,6 +64,35 @@ export const getAllDiscussions = (forumSlug) => dispatch => {
     .catch(err => {
       dispatch({
         type: GET_DISCUSSIONS_FAIL,
+        payload: err
+      })
+    });
+};
+
+// handle input change 
+export const handleInputChange = (event) => dispatch => {
+  const { name, value } = event.target;
+  let payload = {};
+  payload[name] = value;
+  dispatch({
+    type: HANDLE_INPUT_CHANGE,
+    payload: payload
+  });
+};
+
+//handle discussion submit using CREATE_DISCUSSION types
+export const handleDiscussionSubmit = (discussionData) => dispatch => {
+  dispatch({ type: CREATE_DISCUSSION });
+  forumAPI.createDiscussion(discussionData)
+    .then(res => {
+      dispatch({
+        type: CREATE_DISCUSSION_SUCCESS,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      dispatch({
+        type: CREATE_DISCUSSION_FAIL,
         payload: err
       })
     });
