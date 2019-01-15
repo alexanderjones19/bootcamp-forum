@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Post from './Post';
 import { connect } from 'react-redux';
 import { NavLink } from 'reactstrap';
-import { getAllDiscussions } from '../../../actions/forumActions';
+import { getAllDiscussions, getOneDiscussion } from '../../../actions/forumActions';
 import { NavLink as RRNavLink } from 'react-router-dom';
 
 class DiscussionPost extends Component {
@@ -17,7 +17,6 @@ class DiscussionPost extends Component {
   }
 
   render() {
-    // let currentDiscussion = this.props.match.params.type;
     let currentForumSlug = this.props.forum.currentForum.forum_slug;
     let currentForumTitle = this.props.forum.currentForum.forum_name;
     return (
@@ -28,7 +27,9 @@ class DiscussionPost extends Component {
           {this.props.forum.discussions.map(discussion => {
             return (<Post
               key={discussion._id}
+              id={discussion._id}
               discussion={discussion}
+              getOneDiscussion={this.props.getOneDiscussion}
               />);
           })}
         </div>
@@ -39,6 +40,7 @@ class DiscussionPost extends Component {
 
 const mapDispatchToProps = {
   getAllDiscussions,
+  getOneDiscussion
 }
 
 const mapStateToProps = state => ({

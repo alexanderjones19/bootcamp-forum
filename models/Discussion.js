@@ -6,8 +6,8 @@ const DiscussionSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'forum'
   },
+  // discussion slug perhaps unique: true?
   discussion_slug: String,
-  // user_id: Schema.Types.ObjectId,
   user: {
     type: Schema.Types.ObjectId,
     ref: 'users'
@@ -21,7 +21,7 @@ const DiscussionSchema = new Schema({
   // favorites: Array,
   // tags: Array,
   // pinned: Boolean,
-  description: String
+  // description: String
 });
 
 module.exports = Discussion = mongoose.model('discussion', DiscussionSchema);

@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import Header from './components/Header';
 import { getAllForums } from '../../actions/forumActions';
 import DiscussionPost from './components/DiscussionPost';
-// import CreatePost from './components/CreatePost';
-
+import CreatePost from './components/CreatePost';
+import ViewPost from './components/ViewPost';
+ 
 class Forum extends Component {
   componentDidMount() {
     this.props.getAllForums();
@@ -24,8 +25,9 @@ class Forum extends Component {
               forums={this.props.forum.forums}
             />
             <Switch>
-              <Route exact path="/forum/:type" component={ DiscussionPost }/>
-              {/* <Route exact path="/discussion/:type/new" component={ CreatePost }/> */}
+              <Route exact path="/discussion/:type" component={ DiscussionPost }/>
+              <Route exact path="/discussion/:type/new" component={ CreatePost }/>
+              <Route exact path="/discussion/:type/:discussionslug/:discussionid" component={ ViewPost }/>
             </Switch>
           </div>
         </Router>
@@ -35,7 +37,7 @@ class Forum extends Component {
 }
 
 const mapDispatchToProps = {
-  getAllForums,
+  getAllForums
 }
 
 const mapStateToProps = state => ({
