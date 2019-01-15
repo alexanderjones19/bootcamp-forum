@@ -169,18 +169,19 @@ class CreateProfile extends Component {
       { label: "Considering Bootcamp", value: "Considering Bootcamp" },
       { label: "Current Bootcamp Student", value: "Current Bootcamp Student" },
       { label: "Bootcamp Graduate", value: "Bootcamp Graduate" },
+      { label: "Bootcamp Instructor", value: "Bootcamp Instructor" },
       { label: "Other", value: "Other" }
     ];
 
     return (
-      <div className="create-profile">
-        <div className="container">
+      <div className="edit-profile">
+        <div className="container mt-2">
           <div className="row">
-            <div className="col-md-8 m-auto">
-              <Link to="/account" className="btn btn-light">
+            <div className="col-12 m-auto">
+              {/* <Link to="/account" className="btn btn-light">
                 Go Back
-              </Link>
-              <h1 className="display-4 text-center">Edit Profile</h1>
+              </Link> */}
+              {/* <h3 className="text-center">Edit Profile</h3> */}
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
@@ -189,7 +190,7 @@ class CreateProfile extends Component {
                   value={this.state.handle}
                   onChange={this.onChange}
                   error={errors.handle}
-                  info="A unique handle for your profile URL. Your full name, nickname, etc."
+                  info="A unique handle for your profile URL"
                 />
                 <SelectListGroup
                   placeholder="Status"
@@ -214,7 +215,7 @@ class CreateProfile extends Component {
                   value={this.state.website}
                   onChange={this.onChange}
                   error={errors.website}
-                  info="Your personal website"
+                  info="Your website"
                 />
                 <TextFieldGroup
                   placeholder="Location"
@@ -230,7 +231,7 @@ class CreateProfile extends Component {
                   value={this.state.skills}
                   onChange={this.onChange}
                   error={errors.skills}
-                  info="Your skills, separated by commas"
+                  info="Your skills, separated by commas plz"
                 />
                 <TextFieldGroup
                   placeholder="Github Username"
@@ -267,7 +268,7 @@ class CreateProfile extends Component {
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-info btn-block mt-4"
+                  className="btn btn-success btn-block mt-4"
                 />
               </form>
             </div>

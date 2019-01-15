@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import TextFieldGroup from "../common/TextFieldGroup";
-import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addExperience } from "../../actions/profileActions";
@@ -16,7 +15,6 @@ class AddExperience extends Component {
       from: "",
       to: "",
       current: false,
-      description: "",
       errors: {},
       disabled: false
     };
@@ -41,8 +39,7 @@ class AddExperience extends Component {
       location: this.state.location,
       from: this.state.from,
       to: this.state.to,
-      current: this.state.current,
-      description: this.state.description
+      current: this.state.current
     };
 
     this.props.addExperience(expData, this.props.history);
@@ -64,13 +61,13 @@ class AddExperience extends Component {
 
     return (
       <div className="add-experience">
-        <div className="container">
+        <div className="container mt-2">
           <div className="row">
-            <div className="col-md-8 m-auto">
-              <Link to="/account" className="btn btn-light">
+            <div className="col-md-12 m-auto">
+              {/* <Link to="/account" className="btn btn-light">
                 Go Back
-              </Link>
-              <h1 className="display-4 text-center">Professional Experience</h1>
+              </Link> */}
+              {/* <h1 className="display-4 text-center">Professional Experience</h1> */}
               <p className="lead text-center">
                 Add any job or position that you'd like!
               </p>
@@ -128,14 +125,6 @@ class AddExperience extends Component {
                     Current Job?
                   </label>
                 </div>
-                <TextAreaFieldGroup
-                  placeholder="Job Description"
-                  name="description"
-                  value={this.state.description}
-                  onChange={this.onChange}
-                  error={errors.description}
-                  info="Describe the position in as little or much detail as you'd like"
-                />
                 <input
                   type="submit"
                   value="Submit"

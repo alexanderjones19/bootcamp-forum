@@ -61,21 +61,22 @@ class ProfileItem extends Component {
           </div>
 
           {/* User About Info List ---- only displays on large */}
-          <div className="d-none d-lg-block">
+          <div className="col-lg-4 d-none d-lg-block">
             <ul className="list-group list-group-flush">
               {isEmpty(profile.githubusername) ? null : (
                 <li className="list-group-item">
-                  Handle: {profile.githubusername}
+                  <small>Handle:</small> {profile.githubusername}
                 </li>
               )}
               {isEmpty(profile.location) ? null : (
                 <li className="list-group-item">
-                  Location: {profile.location}
+                  <small>Location:</small> {profile.location}
                 </li>
               )}
               {isEmpty(profile.website) ? null : (
                 <li className="list-group-item">
-                  Website: <a href={profile.website}>{profile.website}</a>
+                  <small>Website:</small>{" "}
+                  <a href={profile.website}>{profile.website}</a>
                 </li>
               )}
             </ul>

@@ -5,15 +5,27 @@ import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import Education from "./Education";
 import Experience from "./Experience";
-import ProfileActions from "./ProfileActions";
-// import AddEducation from "../add-credentials/AddEducation";
-// import AddExperience from "../add-credentials/AddExperience";
-// import EditProfile from "../edit-profile/EditProfile";
+import ProfileItem from "../profiles/ProfileItem";
+import {
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink,
+  Row,
+  Col
+} from "reactstrap";
+import classnames from "classnames";
+import AddEducation from "../add-credentials/AddEducation";
+import AddExperience from "../add-credentials/AddExperience";
+import EditProfile from "../edit-profile/EditProfile";
 
 class Account extends Component {
   constructor(props) {
     super(props);
+    // this.toggle = this.toggle.bind(this);
     this.state = {
+      activeTab: "1",
       displaySocialInputs: false,
       handle: "",
       bootcamp: "",
@@ -41,97 +53,115 @@ class Account extends Component {
     this.props.deleteAccount();
   };
 
+  toggle = tab => {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab
+      });
+    }
+  };
+
   render() {
     const { profile } = this.props.profile;
 
     return (
       <div className="account">
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-7">
               <Link to="/dashboard" className="btn btn-light">
                 Go Back
               </Link>
               <h1 className="display-4">Account Portal</h1>
               <div>
-                <ProfileActions />
+                {/* <ProfileActions /> */}
+                <ProfileItem profile={profile} />
                 <Experience experience={profile.experience} />
                 <Education education={profile.education} />
-                {/* nav tabs form select */}
-                {/* <nav>
-                  <div className="nav nav-pills" id="nav-tab" role="tablist">
-                    <a
-                      className="nav-item nav-link active"
-                      id="nav-personal-tab"
-                      data-toggle="tab"
-                      href="#personal-tab"
-                      role="tab"
-                      aria-controls="nav-personal"
-                      aria-selected="true"
-                    >
-                      Personal Info
-                    </a>
-                    <a
-                      className="nav-item nav-link"
-                      id="nav-education-tab"
-                      data-toggle="tab"
-                      href="#education-tab"
-                      role="tab"
-                      aria-controls="nav-education"
-                      aria-selected="false"
-                    >
-                      Education
-                    </a>
-                    <a
-                      className="nav-item nav-link"
-                      id="nav-experience-tab"
-                      data-toggle="tab"
-                      href="#nav-experience"
-                      role="tab"
-                      aria-controls="nav-experience"
-                      aria-selected="false"
-                    >
-                      Experience
-                    </a>
-                  </div>
-                </nav> */}
-                {/* <div className="tab-content" id="myTabContent">
-                  <div
-                    className="tab-pane fade show active"
-                    id="personal-tab"
-                    role="tabpanel"
-                    aria-labelledby="personal-tab"
-                  >
-                    <EditProfile />
-                  </div>
-                  <div
-                    className="tab-pane fade"
-                    id="profile"
-                    role="tabpanel"
-                    aria-labelledby="education-tab"
-                  >
-                    <AddEducation />
-                  </div>
-                  <div
-                    className="tab-pane fade"
-                    id="contact"
-                    role="tabpanel"
-                    aria-labelledby="experience-tab"
-                  >
-                    <AddExperience />
-                  </div>
-                </div> */}
+                {/* <Link
+                  to="/dashboard"
+                  className="btn btn-lg btn-info d-flex my-4 text-white"
+                >
+                  Manage Dashboard View Preferences
+                </Link> */}
               </div>
-              <div style={{ marginBottom: "60px" }} />
-              <hr />
-              <button
-                onClick={this.onDeleteClick.bind(this)}
-                className="btn btn-danger"
-              >
-                Delete My Account
-              </button>
+            </div>
+
+            <div className="col-md-5 col-sm-12 px-0 mx-0">
+              {/* nav tabs form select */}
+              <Nav tabs>
+                <NavItem>
+                  <NavLink
+                    className={classnames({
+                      active: this.state.activeTab === "1"
+                    })}
+                    onClick={() => {
+                      this.toggle("1");
+                    }}
+                  >
+                    Personal Info
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({
+                      active: this.state.activeTab === "2"
+                    })}
+                    onClick={() => {
+                      this.toggle("2");
+                    }}
+                  >
+                    Education
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({
+                      active: this.state.activeTab === "3"
+                    })}
+                    onClick={() => {
+                      this.toggle("3");
+                    }}
+                  >
+                    Experience
+                  </NavLink>
+                </NavItem>
+              </Nav>
+              <TabContent activeTab={this.state.activeTab}>
+                <TabPane tabId="1">
+                  <Row>
+                    <Col sm="12">
+                      <EditProfile />
+                    </Col>
+                  </Row>
+                </TabPane>
+
+                <TabPane tabId="2">
+                  <Row>
+                    <Col sm="12">
+                      <AddEducation />
+                    </Col>
+                  </Row>
+                </TabPane>
+
+                <TabPane tabId="3">
+                  <Row>
+                    <Col sm="12">
+                      <AddExperience />
+                    </Col>
+                  </Row>
+                </TabPane>
+              </TabContent>
             </div>
           </div>
+          <div style={{ marginBottom: "60px" }} />
+          <hr />
+          <button
+            onClick={this.onDeleteClick.bind(this)}
+            className="btn btn-danger"
+          >
+            Delete My Account
+          </button>
         </div>
       </div>
     );
