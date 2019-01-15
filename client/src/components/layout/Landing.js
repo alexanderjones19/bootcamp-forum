@@ -44,14 +44,14 @@ class Landing extends Component {
                 <h1 id="homeTitle" className="display-3 mt-4">
                   BootCampBooster™
                 </h1>
-                <hr />
+                <hr className="landingHr" />
                 <p className="lead">
                   Discover your new hub for all things boot camp related. From
                   pre-camp questions to post-camp networking, BootCampBuster™ is
                   here to help make the most of your camp experience. Come on
                   in!
                 </p>
-                <hr />
+                <hr className="landingHr" />
                 {/* <h4 className="mb-4">
                   Maintained by your peers and professors,{" "}
                   <strong>BootCampBooster™ </strong>
@@ -61,7 +61,7 @@ class Landing extends Component {
                   struggling to stay alive in your current camp, or already
                   working as a developer, BootCampBooster™ is the place for you.
                 </h4>
-                <hr /> */}
+                <hr className="landingHr" /> */}
                 <Link to="/register" className="btn btn-lg btn-info mr-2">
                   Sign Up
                 </Link>
