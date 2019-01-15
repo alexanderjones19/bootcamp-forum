@@ -4,7 +4,7 @@
     "userImage": "https://i.ytimg.com/vi/UXhEAb-Qn0A/maxresdefault.jpg",
     "postTitle": "How to train a dog?",
     "postDescription": "Learn how to make your dog love you",
-    "postContent": "There are many ways to make your dog love you, for example...",
+    "postContent": "```javascript\n let p = 'potato' \n```",
     "postCategory": "general",
     "postId": 1
   },
@@ -34,5 +34,14 @@
     "postContent": "I have the following skills and portfolio projects to show off",
     "postCategory": "bootcamp",
     "postId": 4
+  },
+  {
+    "userName": "Code Potato",
+    "userImage": "https://s.gravatar.com/avatar/1d36f7e7e3e8b067c729fff009b97fce?size=100&default=retro",
+    "postTitle": "Code Example",
+    "postDescription": "HOw to handle code",
+    "postContent": "#### Code\n ```javascript\n let potato = \"string\" \n let a = potato; \n\n /* Comment */ \n\n // function \n let f = function(n) { \n \treturn n * n; \n } \n``` \n Here is a list \n - Item one\n 1. item 2\n\n `potato`",
+    "postCategory": "code",
+    "postId": 5
   }
 ]
