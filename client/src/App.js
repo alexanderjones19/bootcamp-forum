@@ -12,6 +12,7 @@ import Footer from "./components/layout/Footer";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/Dashboard";
+import Account from "./components/dashboard/Account";
 import CreateProfile from "./components/create-profile/CreateProfile";
 import EditProfile from "./components/edit-profile/EditProfile";
 import Profiles from "./components/profiles/Profiles";
@@ -66,6 +67,9 @@ class App extends Component {
               <Route exact path="/profile/:handle" component={Profile} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/account" component={Account} />
               </Switch>
               <Switch>
                 <PrivateRoute

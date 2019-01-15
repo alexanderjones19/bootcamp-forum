@@ -4,9 +4,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
-import ProfileActions from "./ProfileActions";
-import Experience from "./Experience";
-import Education from "./Education";
 import Github from "./Github";
 
 class Dashboard extends Component {
@@ -34,8 +31,12 @@ class Dashboard extends Component {
           <div>
             <p className="lead text-muted">
               Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
+              <Link to="/account" className="btn btn-light ml-4">
+                <i className="fas fa-user-circle text-info mr-1" />
+                Manage Account
+              </Link>
             </p>
-            <ProfileActions />
+            <hr />
             <div className="card-columns">
               <div className="card">
                 <img
@@ -152,16 +153,8 @@ class Dashboard extends Component {
                 </div>
               </div>
             </div>
-            <Experience experience={profile.experience} />
-            <Education education={profile.education} />
             <Github github={profile.githubusername} />
             <div style={{ marginBottom: "60px" }} />
-            <button
-              onClick={this.onDeleteClick.bind(this)}
-              className="btn btn-danger"
-            >
-              Delete My Account
-            </button>
           </div>
         );
       } else {

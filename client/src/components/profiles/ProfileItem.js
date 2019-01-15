@@ -16,7 +16,7 @@ class ProfileItem extends Component {
     return (
       <div className="card card-body mb-3">
         <div className="row">
-          <div className="col-2 text-center d-none d-md-block">
+          <div className="col-2 d-md-block d-none text-center">
             <img
               src={profile.user.avatar}
               alt="avatar"
@@ -29,21 +29,38 @@ class ProfileItem extends Component {
               View Profile
             </Link>
           </div>
-          <div className="col-md-6 col-sm-12">
-            <h3>{profile.user.name}</h3>
+
+          <div className="col-lg-6 col-md-8 col-sm-10">
+            <h3 className="d-none d-md-block">{profile.user.name}</h3>
+            {/* name & profile display on small */}
+            <div className="d-block d-md-none d-flex">
+              <img
+                src={profile.user.avatar}
+                alt="avatar"
+                className="rounded-circle smallPic mr-3"
+              />
+              <h3>{profile.user.name}</h3>
+            </div>
+
             <p>
               {profile.status}{" "}
               {isEmpty(profile.bootcamp) ? null : (
                 <span>at {profile.bootcamp}</span>
               )}
             </p>
+            <Link
+              to={`/profile/${profile.handle}`}
+              className="btn btn-success btn-sm mt-2 px-1 d-block d-md-none"
+            >
+              View Profile
+            </Link>
             <hr />
-            <div className="row">
-              <div className="d-flex flex-wrap justify-content-center">
-                {skills}
-              </div>
+            <div className="d-flex flex-wrap justify-content-left">
+              {skills}
             </div>
           </div>
+
+          {/* User About Info List ---- only displays on large */}
           <div className="d-none d-lg-block">
             <ul className="list-group list-group-flush">
               {isEmpty(profile.githubusername) ? null : (

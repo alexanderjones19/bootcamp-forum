@@ -30,7 +30,7 @@ class Profiles extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-10 m-auto">
-              <h1 className="display-4 text-center">Boot Campers</h1>
+              <h1 className="display-4 text-center">Boosters</h1>
               <p className="lead text-center">
                 Discover and Connect with fellow Bootcampers
               </p>
