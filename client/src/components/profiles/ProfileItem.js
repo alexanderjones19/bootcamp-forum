@@ -16,7 +16,7 @@ class ProfileItem extends Component {
     return (
       <div className="card card-body mb-3">
         <div className="row">
-          <div className="col-2 text-center">
+          <div className="col-2 text-center d-none d-md-block">
             <img
               src={profile.user.avatar}
               alt="avatar"
@@ -24,12 +24,12 @@ class ProfileItem extends Component {
             />
             <Link
               to={`/profile/${profile.handle}`}
-              className="btn btn-success btn-sm mt-2"
+              className="btn btn-success btn-sm mt-2 px-1"
             >
               View Profile
             </Link>
           </div>
-          <div className="col-lg-6 col-md-4 col-8">
+          <div className="col-md-6 col-sm-12">
             <h3>{profile.user.name}</h3>
             <p>
               {profile.status}{" "}
@@ -44,8 +44,8 @@ class ProfileItem extends Component {
               </div>
             </div>
           </div>
-          <div className="col-md-4 d-none d-md-block">
-            <ul className="list-group">
+          <div className="d-none d-lg-block">
+            <ul className="list-group list-group-flush">
               {isEmpty(profile.githubusername) ? null : (
                 <li className="list-group-item">
                   Handle: {profile.githubusername}
