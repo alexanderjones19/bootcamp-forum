@@ -12,9 +12,18 @@ let headerStyle = {
 }
 
 const Post = (props) => {
+  let discussionTitleClick = (event) => {
+    // event.preventDefault();
+    console.log('discussion props', props);
+    props.getOneDiscussion(props.id);
+  };
   return (
     <Card style={postStyle}>
-      <CardHeader style={headerStyle}><NavLink to='/' tag={RRNavLink}><h5>{props.discussion.title}</h5></NavLink></CardHeader>
+      <CardHeader style={headerStyle}>
+        <NavLink to={`/discussion/${props.discussion.forum.forum_slug}/${props.discussion.discussion_slug}/${props.id}`} onClick={discussionTitleClick} tag={RRNavLink}>
+          <h5>{props.discussion.title}</h5>
+        </NavLink>
+      </CardHeader>
       <CardBody>
         <blockquote className="blockquote mb-0">
           <CardText>{props.discussion.content}</CardText>

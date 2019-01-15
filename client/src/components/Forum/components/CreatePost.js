@@ -6,13 +6,8 @@ import { handleInputChange, handleDiscussionSubmit } from '../../../actions/foru
 
 class CreatePost extends Component {
 
-  // let commonmark = require('commonmark');
-
   onSubmit = (event) => {
     event.preventDefault();
-    // let reader = new commonmark.Parser();
-    // let writer = new commonmark.HtmlRenderer();
-    // let parsedContent = reader.parse(props.forumData.content);
     let discussionBody = {
       forum: this.props.currentForum._id,
       discussion_slug: slugify(this.props.newDiscussionData.title),
@@ -20,7 +15,10 @@ class CreatePost extends Component {
       title: this.props.newDiscussionData.title,
       content: this.props.newDiscussionData.content
     };
-    this.props.handleDiscussionSubmit(discussionBody);
+    this.props.handleDiscussionSubmit(discussionBody)
+      .then(data => {
+        this.props.history.push(`/discussion/${data.forum.forum_slug}/${data.discussion_slug}/${data._id}`);
+      });
   }
 
   render() {
@@ -39,13 +37,9 @@ class CreatePost extends Component {
               </FormGroup>
               <FormGroup>
                 <Label for="txtContent">Content</Label>
-                <Input type="textarea" name="content" id="txtContent" onChange={this.props.handleInputChange} />
+                <Input type="textarea" name="content" id="txtContent" rows={15} onChange={this.props.handleInputChange} />
               </FormGroup>
-              {
-                this.props.newDiscussionData.title && this.props.newDiscussionData.content ?
-                <Button outline color="primary" onClick={this.onSubmit} >Post</Button> :
-                <Button outline color="primary" onClick={this.onSubmit} disabled >Post</Button>
-              }
+                <Button outline color="primary" onClick={this.onSubmit} disabled={this.props.newDiscussionData.title.trim() === '' || this.props.newDiscussionData.content.trim() === ''} >Post</Button>
             </Form>
           </CardBody>
         </Card>

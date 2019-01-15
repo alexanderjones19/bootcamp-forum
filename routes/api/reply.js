@@ -34,12 +34,13 @@ router.delete('/:reply_id', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-// get all replies of a discussion
+// get all replies of a discussion by discussion id
 router.get('/', (req, res) => {
-  Reply.find({ discussion_slug: req.query.discussion.discussion_slug })
+  Reply.find({ _id: req.query.discussion._id })
     .sort({ date: -1 })
-    // .populate('forum')
-    // .populate('user')
+    .populate('forum')
+    .populate('user')
+    .populate('discussion')
     .then(replies => res.json(replies))
     .catch(err => res.status(400).json(err));
 });

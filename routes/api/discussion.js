@@ -20,6 +20,8 @@ router.post('/', (req, res) => {
 // find discussion by id
 router.get('/:discussion_id', (req, res) => {
   Discussion.findById({ _id: req.params.discussion_id})
+    .populate('forum')
+    .populate('user')
     .then(discussion => res.json(discussion))
     .catch(err => res.status(400).json(err));
 });
@@ -51,10 +53,8 @@ router.delete('/:discussion_id', (req, res) => {
 
 // get discussions by forum slug
 router.get('/', (req, res) => {
-  console.log('slug', req.query.forum_slug);
   Forum.findOne({ forum_slug: req.query.forum_slug })
     .then(forum => {
-      console.log('forum', forum);
       Discussion.find({ forum: forum._id })
         .sort({ date: -1 })
         .populate('forum')

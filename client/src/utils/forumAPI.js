@@ -70,10 +70,10 @@ export default {
     return axios.delete('/api/reply/' + replyId);
   },
   // Get all replies of a discussion by discussion_id
-  getAllReplies: (discussionSlug) => {
+  getAllReplies: (discussionId) => {
     return axios.get('/api/reply', {
       params: {
-        discussion_slug: discussionSlug
+        _id: discussionId
       }
     });
   }

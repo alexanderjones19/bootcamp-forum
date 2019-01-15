@@ -12,12 +12,19 @@ import{
   CREATE_DISCUSSION,
   CREATE_DISCUSSION_SUCCESS,
   CREATE_DISCUSSION_FAIL,
+  GET_REPLIES,
+  GET_REPLIES_SUCCESS,
+  GET_REPLIES_FAIL,
+  GET_ONE_DISCUSSION,
+  GET_ONE_DISCUSSION_SUCCESS,
+  GET_ONE_DISCUSSION_FAIL
 } from '../actions/types';
 
 const initialState = {
   forums: [],
   discussions: [],
   currentForum: {},
+  currentDiscussion: {},
   replies: [],
   loading: false,
   errors: null,
@@ -96,9 +103,45 @@ export default function(state = initialState, action) {
       return {
         ...state,
         discussions: newDiscussions,
+        currentDiscussion: action.payload,
+        newDiscussionForm: initialState.newDiscussionForm,
         loading: false
       };
     case CREATE_DISCUSSION_FAIL:
+      return {
+        ...state,
+        errors: action.payload,
+        loading: false
+      };
+    case GET_REPLIES:
+      return {
+        ...state,
+        loading: true
+      };
+    case GET_REPLIES_SUCCESS:
+      return {
+        ...state,
+        replies: action.payload.replies,
+        loading: false
+      };
+    case GET_REPLIES_FAIL:
+      return {
+        ...state,
+        errors: action.payload,
+        loading: false
+      };
+    case GET_ONE_DISCUSSION:
+      return {
+        ...state,
+        loading: true
+      };
+    case GET_ONE_DISCUSSION_SUCCESS:
+      return {
+        ...state,
+        currentDiscussion: action.payload,
+        loading: false
+      };
+    case GET_ONE_DISCUSSION_FAIL:
       return {
         ...state,
         errors: action.payload,

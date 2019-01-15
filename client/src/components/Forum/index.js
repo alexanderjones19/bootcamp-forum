@@ -5,7 +5,8 @@ import Header from './components/Header';
 import { getAllForums } from '../../actions/forumActions';
 import DiscussionPost from './components/DiscussionPost';
 import CreatePost from './components/CreatePost';
-
+import ViewPost from './components/ViewPost';
+ 
 class Forum extends Component {
   componentDidMount() {
     this.props.getAllForums();
@@ -26,7 +27,7 @@ class Forum extends Component {
             <Switch>
               <Route exact path="/discussion/:type" component={ DiscussionPost }/>
               <Route exact path="/discussion/:type/new" component={ CreatePost }/>
-              {/* <Route exact path="/discussion/:type/:id" component={ ViewPost }/> */}
+              <Route exact path="/discussion/:type/:discussionslug/:discussionid" component={ ViewPost }/>
             </Switch>
           </div>
         </Router>

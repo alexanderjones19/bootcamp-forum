@@ -12,6 +12,12 @@ import {
   CREATE_DISCUSSION,
   CREATE_DISCUSSION_SUCCESS,
   CREATE_DISCUSSION_FAIL,
+  GET_REPLIES,
+  GET_REPLIES_SUCCESS,
+  GET_REPLIES_FAIL,
+  GET_ONE_DISCUSSION,
+  GET_ONE_DISCUSSION_SUCCESS,
+  GET_ONE_DISCUSSION_FAIL
 } from './types';
 import forumAPI from '../utils/forumAPI';
 
@@ -82,17 +88,58 @@ export const handleInputChange = (event) => dispatch => {
 
 //handle discussion submit using CREATE_DISCUSSION types
 export const handleDiscussionSubmit = (discussionData) => dispatch => {
-  dispatch({ type: CREATE_DISCUSSION });
-  forumAPI.createDiscussion(discussionData)
+  let discussionPromise = new Promise(function(resolve, reject) {
+    dispatch({ type: CREATE_DISCUSSION });
+    forumAPI.createDiscussion(discussionData)
+      .then(res => {
+        dispatch({
+          type: CREATE_DISCUSSION_SUCCESS,
+          payload: res.data
+        })
+        resolve(res.data);
+      })
+      .catch(err => {
+        dispatch({
+          type: CREATE_DISCUSSION_FAIL,
+          payload: err
+        })
+        reject(err);
+      });
+    });
+  return discussionPromise;
+};
+
+//get all replies for a discussion
+export const getAllReplies = (discussionId) => dispatch => {
+  dispatch({ type: GET_REPLIES });
+  forumAPI.getAllReplies(discussionId)
     .then(res => {
       dispatch({
-        type: CREATE_DISCUSSION_SUCCESS,
+        type: GET_REPLIES_SUCCESS,
         payload: res.data
       })
     })
     .catch(err => {
       dispatch({
-        type: CREATE_DISCUSSION_FAIL,
+        type: GET_REPLIES_FAIL,
+        payload: err
+      })
+    });
+};
+
+//get current discussion
+export const getOneDiscussion = (discussionId) => dispatch => {
+  dispatch({ type: GET_ONE_DISCUSSION });
+  forumAPI.getDiscussion(discussionId)
+    .then(res => {
+      dispatch({
+        type: GET_ONE_DISCUSSION_SUCCESS,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ONE_DISCUSSION_FAIL,
         payload: err
       })
     });
