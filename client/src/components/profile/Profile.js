@@ -31,11 +31,6 @@ class Profile extends Component {
                 Back to Campers
               </Link>
             </div>
-            <div className="col-md-6">
-              <p className="btn btn-success mb-3 float-right disabled">
-                Send Friend Request
-              </p>
-            </div>
           </div>
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
