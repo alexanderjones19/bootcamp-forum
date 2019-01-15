@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
 import Github from "./Github";
+import TechNews from "./TechNews";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -37,123 +38,57 @@ class Dashboard extends Component {
               </Link>
             </p>
             <hr />
-            <div className="card-columns">
+            <div className="card-deck">
               <div className="card">
-                <img
+                {/* <img
                   className="card-img-top"
                   src={require("../../img/matrix.jpg")}
-                  alt="cardColumnImage"
-                />
+                  alt="matrix"
+                /> */}
+                <div className="card-header p-3 display-4">Tech News</div>
                 <div className="card-body">
-                  <h5 className="card-title">
-                    Card title that wraps to a new line
-                  </h5>
-                  <p className="card-text">
-                    This is a longer card with supporting text below as a
-                    natural lead-in to additional content. This content is a
-                    little bit longer.
-                  </p>
+                  <TechNews />
+                </div>
+                <div className="card-footer">
+                  <small className="text-muted">Last updated 3 mins ago</small>
                 </div>
               </div>
-              <div className="card bg-info p-3 text-white">
-                <blockquote className="blockquote mb-0 card-body">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Integer posuere erat a ante.
-                  </p>
-                  <footer className="blockquote-footer">
-                    <small className="text-muted">
-                      Someone famous in{" "}
-                      <cite title="Source Title">Source Title</cite>
-                    </small>
-                  </footer>
-                </blockquote>
-              </div>
-              <div className="card bg-info text-white text-center p-3">
-                <blockquote className="blockquote mb-0">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Integer posuere erat.
-                  </p>
-                  <footer className="blockquote-footer">
-                    <small>
-                      Someone famous in{" "}
-                      <cite title="Source Title">Source Title</cite>
-                    </small>
-                  </footer>
-                </blockquote>
-              </div>
               <div className="card">
-                <img
+                {/* <img
                   className="card-img-top"
                   src={require("../../img/matrix.jpg")}
-                  alt="cardColumnImage"
-                />
+                  alt="matrix"
+                /> */}
+                <div className="card-header p-3 display-4">Job Board</div>
                 <div className="card-body">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="card-text">
-                    This card has supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <p className="card-text">
-                    <small className="text-muted">
-                      Last updated 3 mins ago
-                    </small>
-                  </p>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                  </ul>
                 </div>
-              </div>
-              <div className="card text-center">
-                <div className="card-body">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="card-text">
-                    This card has supporting text below as a natural lead-in to
-                    additional content.
-                  </p>
-                  <p className="card-text">
-                    <small className="text-muted">
-                      Last updated 3 mins ago
-                    </small>
-                  </p>
+                <div className="card-footer">
+                  <small className="text-muted">Last updated 3 mins ago</small>
                 </div>
               </div>
               <div className="card">
-                <img
-                  className="card-img"
+                {/* <img
+                  className="card-img-top"
                   src={require("../../img/matrix.jpg")}
-                  alt="Cardimage"
-                />
-              </div>
-              <div className="card bg-info p-3 text-right text-white">
-                <blockquote className="blockquote mb-0">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Integer posuere erat a ante.
-                  </p>
-                  <footer className="blockquote-footer">
-                    <small className="text-muted">
-                      Someone famous in{" "}
-                      <cite title="Source Title">Source Title</cite>
-                    </small>
-                  </footer>
-                </blockquote>
-              </div>
-              <div className="card">
+                  alt="matrix"
+                /> */}
+                <div className="card-header p-3 display-4">My Repos</div>
                 <div className="card-body">
-                  <h5 className="card-title">Card title</h5>
-                  <p className="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This card has even longer
-                    content than the first to show that equal height action.
-                  </p>
-                  <p className="card-text">
-                    <small className="text-muted">
-                      Last updated 3 mins ago
-                    </small>
-                  </p>
+                  <ul class="list-group list-group-flush">
+                    <Github github={profile.githubusername} />
+                  </ul>
+                </div>
+                <div className="card-footer">
+                  <small className="text-muted">Last updated 3 mins ago</small>
                 </div>
               </div>
             </div>
-            <Github github={profile.githubusername} />
+            <hr />
             <div style={{ marginBottom: "60px" }} />
           </div>
         );

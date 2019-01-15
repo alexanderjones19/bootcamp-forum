@@ -16,7 +16,7 @@ class Github extends Component {
     githubAPI.getRepos(github).then(res => {
       console.log(res);
       let repoCont = [];
-      for (let i = 0; i < 18 || i < res.length; i++) {
+      for (let i = 0; i < 6 || i < res.length; i++) {
         let repo = {};
         repo.name = res.data[i].name;
         repo.url = res.data[i].html_url;
@@ -32,28 +32,25 @@ class Github extends Component {
 
   render() {
     const repos1 = this.state.repos.map(repo => (
-      <div className="card text-center">
-        <div className="card-body">
-          <h5 className="card-title">{repo.name}</h5>
-          <p className="card-text">{repo.desc}</p>
+      <div>
+        <div className="row">
+          {/* <p className="lead">{repo.name}</p> */}
           <a
             href={repo.url}
             rel="noopener noreferrer"
             target="_blank"
-            class="btn btn-dark"
+            className="ml-4"
           >
-            Go
+            <p className="lead">{repo.name}</p>
           </a>
         </div>
+        {/* <p className="text-sm">{repo.desc}</p> */}
       </div>
     ));
 
     return (
       <div>
-        <h4 className="mb-4">Github Repos</h4>
-        <div className="card-columns">
-          <p> {repos1} </p>
-        </div>
+        <li className="list-group-item p-0 m-0">{repos1}</li>
       </div>
     );
   }

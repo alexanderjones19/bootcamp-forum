@@ -11,6 +11,12 @@ img {
   color: white;
 }
 
+.card-header {
+  background: #5bc0de;
+  color: white;
+  text-align: center;
+}
+
 .landing {
   position: relative;
   background: url("./img/acheivementImage.jpg") no-repeat;
