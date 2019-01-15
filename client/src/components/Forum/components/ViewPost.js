@@ -51,7 +51,7 @@ class ViewPost extends Component {
 
   displayTextArea = () => {
     if(this.state.isReplying) {
-      return <CreateReply handleReply={this.handlePostReply}/>
+      return <CreateReply handleReply={this.handlePostReply} displayCheatSheet={this.props.displayCheatSheet}/>
     } else {
       return 
     }
@@ -59,7 +59,6 @@ class ViewPost extends Component {
 
   render(){
   let post = this.props.discussion[this.props.match.params.id - 1];
-    // {console.log(this.props)}
     return (
       <div className="mt-3 mb-5">
           <Card >

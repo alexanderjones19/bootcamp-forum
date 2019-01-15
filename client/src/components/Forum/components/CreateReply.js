@@ -8,7 +8,8 @@ const CreateReply = props => {
         <Input type="textarea" name="reply" rows={4} />
       </CardBody>
       <CardFooter>
-      <Button color="success" block onClick={props.handleReply}>Post</Button>
+        <Button color="success" onClick={props.handleReply}>Post</Button> {''}
+        <Button color="info" onClick={props.displayCheatSheet}>View Markdown Cheat Sheet</Button>
       </CardFooter>
     </Card>
   )

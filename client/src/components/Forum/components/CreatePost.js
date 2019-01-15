@@ -27,6 +27,7 @@ const CreatePost = props => {
           <CardText>
             This forum handle Markdown text format. Enter your post title then on your post description you may use Markdown to enter code or list to describe your issue.
           </CardText>
+          <Button color="info" onClick={props.displayCheatSheet}>View Markdown Cheat Sheet</Button> <br/><br/>
           <Form>
             <FormGroup>
               <Label for="txtTitle">Title</Label>
@@ -34,7 +35,7 @@ const CreatePost = props => {
             </FormGroup>
             <FormGroup>
               <Label for="txtDescription">Description</Label>
-              <Input type="textarea" name="description" onChange={props.handleInputChange} id="txtDescription" />
+              <Input type="textarea" name="description" rows={15} onChange={props.handleInputChange} id="txtDescription" />
             </FormGroup>
             <Button outline color="primary" onClick={props.handlePostSubmit}>Post</Button>
           </Form>

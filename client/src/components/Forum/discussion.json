@@ -13,7 +13,7 @@
     "userImage": "https://upload.wikimedia.org/wikipedia/eo/thumb/c/c8/RM_portreto.jpg/220px-RM_portreto.jpg",
     "postTitle": "How to build a rat maze?",
     "postDescription": "Does anybody know how to build a rat maze that would train a rat to be smart",
-    "postContent": "There are some examples of rat mazes online",
+    "postContent": "There are some examples of rat mazes online \n\n **Block quote thing** \n\n `javascript` \n\n --- \n ---",
     "postCategory": "general",
     "postId": 2
   },
@@ -22,7 +22,7 @@
     "userImage": "https://avatars3.githubusercontent.com/u/18260952?s=200&v=4",
     "postTitle": "What's the best method to loop through an objects array?",
     "postDescription": "I've been trying to make my software faster and I'm looking for a more efficient way to loop through arrays",
-    "postContent": "There are a few predetermined iteration functions like array.map or array.forEach...",
+    "postContent": "Term: \n : definition",
     "postCategory": "code",
     "postId": 3
   },
