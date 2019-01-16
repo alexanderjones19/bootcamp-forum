@@ -33,6 +33,7 @@ class TechNews extends Component {
     const newsLog = this.state.articles.map(article => (
       <div>
         <div className="row">
+        <div className="col-md-12">
           {/* <p className="lead">{article.name}</p> */}
           <a
             href={article.url}
@@ -43,6 +44,7 @@ class TechNews extends Component {
             <p className="lead">{article.title}</p>
           </a>
           <p>{article.desc}</p>
+          </div>
         </div>
         {/* <p className="text-sm">{article.desc}</p> */}
       </div>
