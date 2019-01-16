@@ -11,7 +11,7 @@ const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
 // Load User model
-const User = require("../../models/User");
+const db = require("./../../models");
 
 // @route      GET api/users/test
 // @desc       Tests users route
@@ -29,7 +29,7 @@ router.post("/register", (req, res) => {
     return res.status(400).json(errors);
   }
 
-  User.findOne({ email: req.body.email }).then(user => {
+  db.User.findOne({ email: req.body.email }).then(user => {
     if (user) {
       errors.email = "Email already exists";
       return res.status(400).json(errors);
@@ -76,7 +76,7 @@ router.post("/login", (req, res) => {
   const password = req.body.password;
 
   // find user by email
-  User.findOne({ email }).then(user => {
+  db.User.findOne({ email }).then(user => {
     // Check for user
     if (!user) {
       errors.email = "User not found";
