@@ -22,12 +22,12 @@ class Education extends Component {
             <Moment format="MM/DD/YYYY">{edu.to}</Moment>
           )}
         </td>
-        <button
-          className="btn btn-danger"
-          onClick={this.onDeleteClick.bind(this, edu._id)}
-        >
-          Delete
-        </button>
+          <button
+            className="btn btn-danger"
+            onClick={this.onDeleteClick.bind(this, edu._id)}
+          >
+            Delete
+          </button>
       </tr>
     ));
 

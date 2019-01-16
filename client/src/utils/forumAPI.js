@@ -73,7 +73,7 @@ export default {
   getAllReplies: (discussionId) => {
     return axios.get('/api/reply', {
       params: {
-        _id: discussionId
+        discussion_id: discussionId
       }
     });
   }

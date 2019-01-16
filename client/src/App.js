@@ -28,7 +28,6 @@ import {
 import "./App.css";
 
 // const store = createStore(reducer);
-console.log(store.getState());
 // check for token
 if (localStorage.jwtToken) {
   // set auth token header auth
@@ -60,7 +59,7 @@ class App extends Component {
             <Navbar />
             <Route exact path="/" component={Landing} />
             <div className="container">
-              <Route exact path="/forum" component={Forum} />
+              <Route path="/forum" component={Forum} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profiles" component={Profiles} />
