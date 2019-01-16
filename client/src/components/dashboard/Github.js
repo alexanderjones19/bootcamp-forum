@@ -16,7 +16,7 @@ class Github extends Component {
     githubAPI.getRepos(github).then(res => {
       console.log(res);
       let repoCont = [];
-      for (let i = 0; i < 15 || i < res.length; i++) {
+      for (let i = 0; i < 6 || i < res.length; i++) {
         let repo = {};
         repo.name = res.data[i].name;
         repo.url = res.data[i].html_url;
