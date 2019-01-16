@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
@@ -50,9 +51,36 @@ class Login extends Component {
       <div className="login">
         <div className="container">
           <div className="row">
+            <div className="d-none d-md-block col-md-4">
+              <div className="card">
+                <div className="card-img-top">
+                  <img
+                    src={require("../../img/binaryBabe.jpg")}
+                    alt="login"
+                    className="src"
+                  />
+                </div>
+                <div className="card-body">
+                  <p className="lead">
+                    Get authorized using the email and password your provided on
+                    registration. Then, you'll have access to the greatest
+                    resource for boot camp students since StackOverflow
+                  </p>
+                </div>
+                <div className="card-footer text-center p-2">
+                  <Link to="/" className="mx-3">
+                    <small>Terms of Service</small>
+                  </Link>
+                  <Link to="/" className="mx-3">
+                    <small>Privacy Policy</small>
+                  </Link>
+                </div>
+              </div>
+            </div>
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Log In</h1>
-              <p className="lead text-center">Sign in to view your account</p>
+              <h1 className="display-4">Welcome!</h1>
+              <h1 className="display-4">Sign in to view your account</h1>
+              <hr />
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="Email Address"

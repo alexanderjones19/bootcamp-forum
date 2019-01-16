@@ -4,9 +4,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
-import ProfileActions from "./ProfileActions";
-import Experience from "./Experience";
-import Education from "./Education";
+import Github from "./Github";
+import TechNews from "./TechNews";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -33,28 +32,204 @@ class Dashboard extends Component {
           <div>
             <p className="lead text-muted">
               Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
+              <Link to="/account" className="btn btn-light ml-4">
+                <i className="fas fa-user-circle text-info mr-1" />
+                Manage Account
+              </Link>
             </p>
-            <ProfileActions />
-            <Experience experience={profile.experience} />
-            <Education education={profile.education} />
+            <hr />
+            <div className="card-deck">
+              <div className="card">
+                {/* <img
+                  className="card-img-top"
+                  src={require("../../img/matrix.jpg")}
+                  alt="matrix"
+                /> */}
+                <div className="card-header p-3 display-4">Tech News</div>
+                <div className="card-body">
+                  <TechNews />
+                </div>
+                <div className="card-footer">
+                  <small className="text-muted">Last updated 3 mins ago</small>
+                </div>
+              </div>
+              <div className="card">
+                {/* <img
+                  className="card-img-top"
+                  src={require("../../img/matrix.jpg")}
+                  alt="matrix"
+                /> */}
+                <div className="card-header p-3 display-4">Job Board</div>
+                <div className="card-body">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                  </ul>
+                </div>
+                <div className="card-footer">
+                  <small className="text-muted">Last updated 3 mins ago</small>
+                </div>
+              </div>
+              <div className="card">
+                {/* <img
+                  className="card-img-top"
+                  src={require("../../img/matrix.jpg")}
+                  alt="matrix"
+                /> */}
+                <div className="card-header p-3 display-4">My Repos</div>
+                <div className="card-body">
+                  <ul class="list-group list-group-flush">
+                    <Github github={profile.githubusername} />
+                  </ul>
+                </div>
+                <div className="card-footer">
+                  <small className="text-muted">Last updated 3 mins ago</small>
+                </div>
+              </div>
+            </div>
+            <hr />
             <div style={{ marginBottom: "60px" }} />
-            <button
-              onClick={this.onDeleteClick.bind(this)}
-              className="btn btn-danger"
-            >
-              Delete My Account
-            </button>
           </div>
         );
       } else {
         // user is logged in but has no profile
         dashboardContent = (
-          <div>
-            <p className="lead text-muted">Welcome {user.name} </p>
-            <p>C'mon now {user.name}, you need to sharpen up your profile!</p>
-            <Link to="/create-profile" className="btn btn-lg btn-info">
-              Create Profile
-            </Link>
+          <div className="noProfileDashboard">
+            <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <p className="lead text-muted">Welcome {user.name} </p>
+                  <p>
+                    C'mon now {user.name}, you need to sharpen up your profile!
+                  </p>
+                  <Link to="/create-profile" className="btn btn-lg btn-success">
+                    Create Profile
+                  </Link>
+                </div>
+              </div>
+              <div className="row mt-3">
+                <div className="col-12">
+                  <div className="card-columns">
+                    <div className="card">
+                      <img
+                        className="card-img-top"
+                        src={require("../../img/matrix.jpg")}
+                        alt="cardColumnImage"
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title">
+                          Card title that wraps to a new line
+                        </h5>
+                        <p className="card-text">
+                          This is a longer card with supporting text below as a
+                          natural lead-in to additional content. This content is
+                          a little bit longer.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="card bg-info p-3 text-white">
+                      <blockquote className="blockquote mb-0 card-body">
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Integer posuere erat a ante.
+                        </p>
+                        <footer className="blockquote-footer">
+                          <small className="text-muted">
+                            Someone famous in{" "}
+                            <cite title="Source Title">Source Title</cite>
+                          </small>
+                        </footer>
+                      </blockquote>
+                    </div>
+                    <div className="card bg-info text-white text-center p-3">
+                      <blockquote className="blockquote mb-0">
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Integer posuere erat.
+                        </p>
+                        <footer className="blockquote-footer">
+                          <small>
+                            Someone famous in{" "}
+                            <cite title="Source Title">Source Title</cite>
+                          </small>
+                        </footer>
+                      </blockquote>
+                    </div>
+                    <div className="card">
+                      <img
+                        className="card-img-top"
+                        src={require("../../img/matrix.jpg")}
+                        alt="cardColumnImage"
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title">Card title</h5>
+                        <p className="card-text">
+                          This card has supporting text below as a natural
+                          lead-in to additional content.
+                        </p>
+                        <p className="card-text">
+                          <small className="text-muted">
+                            Last updated 3 mins ago
+                          </small>
+                        </p>
+                      </div>
+                    </div>
+                    <div className="card text-center">
+                      <div className="card-body">
+                        <h5 className="card-title">Card title</h5>
+                        <p className="card-text">
+                          This card has supporting text below as a natural
+                          lead-in to additional content.
+                        </p>
+                        <p className="card-text">
+                          <small className="text-muted">
+                            Last updated 3 mins ago
+                          </small>
+                        </p>
+                      </div>
+                    </div>
+                    <div className="card">
+                      <img
+                        className="card-img"
+                        src={require("../../img/matrix.jpg")}
+                        alt="Cardimage"
+                      />
+                    </div>
+                    <div className="card bg-info p-3 text-right text-white">
+                      <blockquote className="blockquote mb-0">
+                        <p>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Integer posuere erat a ante.
+                        </p>
+                        <footer className="blockquote-footer">
+                          <small className="text-muted">
+                            Someone famous in{" "}
+                            <cite title="Source Title">Source Title</cite>
+                          </small>
+                        </footer>
+                      </blockquote>
+                    </div>
+                    <div className="card">
+                      <div className="card-body">
+                        <h5 className="card-title">Card title</h5>
+                        <p className="card-text">
+                          This is a wider card with supporting text below as a
+                          natural lead-in to additional content. This card has
+                          even longer content than the first to show that equal
+                          height action.
+                        </p>
+                        <p className="card-text">
+                          <small className="text-muted">
+                            Last updated 3 mins ago
+                          </small>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         );
       }

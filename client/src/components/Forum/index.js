@@ -1,41 +1,33 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Header from './components/Header';
-import forumAPI from '../../utils/forumAPI';
-// import DiscussionPost from './DiscussionPost';
-// import CreatePost from './CreatePost';
-
+import { getAllForums } from '../../actions/forumActions';
+import DiscussionPost from './components/DiscussionPost';
+import CreatePost from './components/CreatePost';
+import ViewPost from './components/ViewPost';
+ 
 class Forum extends Component {
-  state = {
-    forums: [],
-    discussions: [],
-    replies: []
-  }
-
   componentDidMount() {
-    this.loadForums();
+    this.props.getAllForums();
   }
 
-  loadForums = () => {
-    forumAPI.getAllForums()
-      .then(res =>
-          this.setState({ forums: res.data })
-        )
-        .catch(err => console.log(err));
-  };
+  componentDidUpdate() {
+    // this.props.getOneForum(this.props.match.params.type);
+  }
 
   render() {
     return (
       <div className="container">
-
         <Router>
           <div>
             <Header 
-              forums={this.state.forums}
+              forums={this.props.forum.forums}
             />
             <Switch>
-              {/* <Route exact path="/discussion/:type" component={ DiscussionPost }/> */}
-              {/* <Route exact path="/discussion/:type/new" component={ CreatePost }/> */}
+              <Route exact path="/discussion/:type" component={ DiscussionPost }/>
+              <Route exact path="/discussion/:type/new" component={ CreatePost }/>
+              <Route exact path="/discussion/:type/:discussionslug/:discussionid" component={ ViewPost }/>
             </Switch>
           </div>
         </Router>
@@ -44,4 +36,15 @@ class Forum extends Component {
   }
 }
 
-export default Forum;
+const mapDispatchToProps = {
+  getAllForums
+}
+
+const mapStateToProps = state => ({
+  forum: state.forum
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Forum);
