@@ -8,7 +8,8 @@ import {
 const initialState = {
   profile: null,
   profiles: null,
-  loading: false
+  loading: false,
+  test: 'Profile State WOrking'
 };
 
 export default function(state = initialState, action) {

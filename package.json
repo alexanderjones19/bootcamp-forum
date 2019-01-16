@@ -1,5 +1,5 @@
 {
-  "name": "bootcampbuster",
+  "name": "bootcamp-forum",
   "version": "1.0.0",
   "description": "Social Network for Coding Boot Camp Students",
   "main": "server.js",
@@ -8,7 +8,8 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",

@@ -19,11 +19,6 @@ class Navbar extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/dashboard">
-            Dashboard
-          </Link>
-        </li>
-        <li className="nav-item">
           <button
             href="#"
             onClick={this.onLogoutClick}
@@ -60,11 +55,8 @@ class Navbar extends Component {
 
     return (
       // Navbar
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark sticky-top mb-4 py-0 my-0">
         <div className="container">
-          <Link className="navbar-brand" to="/">
-            BCForum
-          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -73,23 +65,35 @@ class Navbar extends Component {
           >
             <span className="navbar-toggler-icon" />
           </button>
-
+          <Link className="navbar-brand" to="/">
+            <img
+              src={require("../../img/BootCampBoosterLogoSquare.png")}
+              alt="logo"
+              id="navbarLogo"
+              className="navbar-brand"
+            />
+          </Link>
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
+                <Link className="nav-link" to="/dashboard">
+                  DASHBOARD
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link" to="/profiles">
                   {" "}
-                  Members
+                  MEMBERS
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/forum">
-                  Forum
+                  FORUM
                 </Link>
               </li>
             </ul>
-            {isAuthenticated ? authLinks : guestLinks}
           </div>
+          {isAuthenticated ? authLinks : guestLinks}
         </div>
       </nav>
     );

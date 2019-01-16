@@ -17,15 +17,51 @@ class Landing extends Component {
         <div className="dark-overlay landing-inner text-light">
           <div className="container">
             <div className="row">
-              <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Like BootCampSpot but Better</h1>
+              <div className="d-none d-md-block col-md-5">
+                <div className="card card-body p-0">
+                  <img
+                    src={require("../../img/pantsPeople.jpg")}
+                    alt="relatable"
+                    id="pencilBiter"
+                  />
+                  <ul className="list-group list-group-flush text-dark">
+                    <li className="list-group-item homeList lead">
+                      Maximize your boot camp experience
+                    </li>
+                    <li className="list-group-item homeList lead">
+                      Participate in code and camp discussions
+                    </li>
+                    <li className="list-group-item homeList lead">
+                      Connect with the global community of developers
+                    </li>
+                    {/* <li className="list-group-item homeList lead">
+                      Integrate with your class repository and calendar
+                    </li> */}
+                  </ul>
+                </div>
+              </div>
+              <div className="col-md-7">
+                <h1 id="homeTitle" className="display-3 mt-4">
+                  BootCampBooster™
+                </h1>
+                <hr className="landingHr" />
                 <p className="lead">
-                  {" "}
-                  Create and maintain a coding profile/portfolio, ask questions
-                  about code and boot camp in general, stay connected with your
-                  classmates and the broader boot camp community
+                  Discover your new hub for all things boot camp related. From
+                  pre-camp questions to post-camp networking, BootCampBuster™ is
+                  here to help make the most of your camp experience. Come on
+                  in!
                 </p>
-                <hr />
+                <hr className="landingHr" />
+                {/* <h4 className="mb-4">
+                  Maintained by your peers and professors,{" "}
+                  <strong>BootCampBooster™ </strong>
+                  combines the social, educational, and professional aspects of
+                  coding boot camps in one progressive and welcoming
+                  environment. Whether you're simply interested in coding, just
+                  struggling to stay alive in your current camp, or already
+                  working as a developer, BootCampBooster™ is the place for you.
+                </h4>
+                <hr className="landingHr" /> */}
                 <Link to="/register" className="btn btn-lg btn-info mr-2">
                   Sign Up
                 </Link>

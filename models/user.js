@@ -26,8 +26,8 @@ const UserSchema = new Schema({
   // Role field
   role: {
     type: String,
-    default: 'user'
+    default: "user"
   }
 });
 
-module.exports = User = mongoose.model('users', UserSchema);
+module.exports = User = mongoose.model("users", UserSchema);

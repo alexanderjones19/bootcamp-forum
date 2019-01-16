@@ -12,11 +12,14 @@ import Footer from "./components/layout/Footer";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/Dashboard";
+import Account from "./components/dashboard/Account";
 import CreateProfile from "./components/create-profile/CreateProfile";
 import EditProfile from "./components/edit-profile/EditProfile";
+import Profiles from "./components/profiles/Profiles";
+import Profile from "./components/profile/Profile";
 import AddExperience from "./components/add-credentials/AddExperience";
 import AddEducation from "./components/add-credentials/AddEducation";
-import Forum from './components/Forum/index';
+import Forum from "./components/Forum/index";
 import {
   getCurrentProfile,
   clearCurrentProfile
@@ -60,8 +63,13 @@ class App extends Component {
               <Route exact path="/forum" component={Forum} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
+              <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/profile/:handle" component={Profile} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/account" component={Account} />
               </Switch>
               <Switch>
                 <PrivateRoute
