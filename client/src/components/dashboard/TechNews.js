@@ -14,14 +14,18 @@ class TechNews extends Component {
     newsAPI.getNews().then(res => {
       console.log(res);
       let newsCont = [];
-      for (let i = 0; i < res.length; i++) {
+      for (let i = 0; i < res.data.articles.length; i++) {
         let article = {};
         article.title = res.data.articles[i].title;
         article.url = res.data.articles[i].url;
         article.desc = res.data.articles[i].description;
+        console.log("article" + article);
         newsCont.push(article);
       }
-      return newsCont;
+      console.log("newscont" + newsCont);
+      this.setState({
+        articles: newsCont
+      })
     });
   };
 
