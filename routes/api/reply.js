@@ -1,12 +1,18 @@
 const express = require("express");
 const router = express.Router();
-
+const passport = require('passport');
 const Reply = require('../../models/Reply');
+const validateReplyInput = require('../../validation/reply');
 
 // api/reply
 
 // create reply
-router.post('/', (req, res) => {
+router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const { errors, isValid } = validateReplyInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+  
   Reply.create(req.body)
     .then(reply => res.json(reply))
     .catch(err => res.status(400).json(err));

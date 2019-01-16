@@ -41,6 +41,10 @@ class ViewPost extends Component {
     Prism.highlightAll();
   }
 
+  componentDidUpdate() {
+    Prism.highlightAll();
+  }
+
   displayTextArea = () => {
     if (this.props.forum.isReplying) {
       return <CreateReply

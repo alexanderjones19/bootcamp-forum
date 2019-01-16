@@ -1,13 +1,19 @@
 const express = require("express");
 const router = express.Router();
-
+const passport = require('passport');
 const Forum = require('../../models/Forum');
 const Discussion = require('../../models/Discussion');
+const validateDiscussionInput = require('../../validation/discussion');
 
 // api/discussion
 
 // create discussion
-router.post('/', (req, res) => {
+router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const { errors, isValid } = validateDiscussionInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+  
   Discussion.create(req.body)
     .then(discussion => {
       discussion.populate('user').populate('forum', (err) => {
