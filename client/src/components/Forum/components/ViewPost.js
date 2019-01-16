@@ -31,8 +31,6 @@ const userName = {
   color: "white"
 };
 
-const commonmark = require("commonmark");
-
 class ViewPost extends Component {
   componentDidMount() {
     if (!this.props.forum.currentDiscussion._id) {
