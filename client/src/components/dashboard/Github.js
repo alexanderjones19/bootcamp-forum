@@ -13,21 +13,23 @@ class Github extends Component {
 
   getRepos = () => {
     const github = this.props.github;
-    githubAPI.getRepos(github).then(res => {
-      console.log(res);
-      let repoCont = [];
-      for (let i = 0; i < 6 || i < res.length; i++) {
-        let repo = {};
-        repo.name = res.data[i].name;
-        repo.url = res.data[i].html_url;
-        repo.desc = res.data[i].description;
-        repoCont.push(repo);
-      }
-      console.log(repoCont);
-      this.setState({
-        repos: repoCont
-      });
-    });
+    if(github) {
+      githubAPI.getRepos(github).then(res => {
+        console.log(res);
+        let repoCont = [];
+        for (let i = 0; i < 6 || i < res.length; i++) {
+          let repo = {};
+          repo.name = res.data[i].name;
+          repo.url = res.data[i].html_url;
+          repo.desc = res.data[i].description;
+          repoCont.push(repo);
+        }
+        console.log(repoCont);
+        this.setState({
+          repos: repoCont
+        });
+      }); 
+    }
   };
 
   render() {
