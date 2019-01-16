@@ -3,10 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 
-// Post model
-const Post = require("../../models/Post");
-// Profile Model
-const Profile = require("../../models/Profile");
+const db = require('./../../models');
 
 // Validation
 const validatePostInput = require("../../validation/post");
@@ -20,7 +17,7 @@ router.get("/test", (req, res) => res.json({ msg: "Post Route Connected" }));
 // @desc       Get posts route
 // @access     Public
 router.get("/", (req, res) => {
-  Post.find()
+  db.Post.find()
     .sort({ date: -1 })
     .then(posts => res.json(posts))
     .catch(err => res.status(404).json({ nopostsfound: "No posts found" }));
@@ -30,7 +27,7 @@ router.get("/", (req, res) => {
 // @desc       Get post by ID
 // @access     Public
 router.get("/:id", (req, res) => {
-  Post.findById(req.params.id)
+  db.Post.findById(req.params.id)
     .then(post => res.json(post))
     .catch(err =>
       res.status(404).json({ nopostfound: "No post found with that id" })
@@ -69,8 +66,8 @@ router.delete(
   "/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
-      Post.findById(req.params.id)
+    db.Profile.findOne({ user: req.user.id }).then(profile => {
+      db.Post.findById(req.params.id)
         .then(post => {
           // Check for post owner
           if (post.user.toString() !== req.user.id) {
@@ -93,8 +90,8 @@ router.post(
   "/like/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
-      Post.findById(req.params.id)
+    db.Profile.findOne({ user: req.user.id }).then(profile => {
+      db.Post.findById(req.params.id)
         .then(post => {
           if (
             post.likes.filter(like => like.user.toString() === req.user.id)
@@ -120,8 +117,8 @@ router.post(
   "/unlike/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
-      Post.findById(req.params.id)
+    db.Profile.findOne({ user: req.user.id }).then(profile => {
+      db.Post.findById(req.params.id)
         .then(post => {
           if (
             post.likes.filter(like => like.user.toString() === req.user.id)
@@ -159,7 +156,7 @@ router.post(
       return res.status(400).json(errors);
     }
 
-    Post.findById(req.params.id)
+    db.Post.findById(req.params.id)
       .then(post => {
         const newComment = {
           text: req.body.text,
@@ -183,7 +180,7 @@ router.delete(
   "/comment/:id/:comment_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Post.findById(req.params.id)
+    db.Post.findById(req.params.id)
       .then(post => {
         // check to see if comment exists
         if (
