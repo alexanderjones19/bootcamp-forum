@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Social Network for Coding Boot Camp Students",
   "main": "server.js",
+  "engines": {
+    "node": "10.6.0"
+  },
   "scripts": {
     "client-install": "npm install --prefix client",
     "start": "node server.js",
