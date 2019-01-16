@@ -36,7 +36,7 @@ router.delete('/:reply_id', (req, res) => {
 
 // get all replies of a discussion by discussion id
 router.get('/', (req, res) => {
-  Reply.find({ _id: req.query.discussion._id })
+  Reply.find({ discussion: req.query.discussion_id })
     .sort({ date: -1 })
     .populate('forum')
     .populate('user')

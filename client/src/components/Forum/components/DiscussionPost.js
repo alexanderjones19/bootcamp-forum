@@ -7,6 +7,7 @@ import { NavLink as RRNavLink } from 'react-router-dom';
 
 class DiscussionPost extends Component {
   componentDidMount() {
+    console.log('did mount');
     this.props.getAllDiscussions(this.props.match.params.type);
   }
   
@@ -22,7 +23,7 @@ class DiscussionPost extends Component {
     return (
       <div>
         <h3 className="mt-3 mb-3">This is a {currentForumTitle} forum. Post/Answer any questions.</h3>
-        <NavLink className="btn btn-primary" to={`/discussion/${currentForumSlug}/new`} tag={RRNavLink}>New Question</NavLink>
+        <NavLink className="btn btn-primary" to={`/forum/discussion/${currentForumSlug}/new`} tag={RRNavLink}>New Question</NavLink>
         <div className="mt-3">
           {this.props.forum.discussions.map(discussion => {
             return (<Post

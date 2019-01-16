@@ -18,7 +18,7 @@ const ReplySchema = new Schema({
     type: Date,
     default: Date.now
   },
-  content: String
+  reply: String
 });
 
 module.exports = Reply = mongoose.model('reply', ReplySchema);

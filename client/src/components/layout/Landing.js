@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 class Landing extends Component {
   componentDidMount() {
+    console.log('landing did mount');
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
