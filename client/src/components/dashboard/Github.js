@@ -13,7 +13,7 @@ class Github extends Component {
 
   getRepos = () => {
     const github = this.props.github;
-    if(github) {
+    if (github) {
       githubAPI.getRepos(github).then(res => {
         console.log(res);
         let repoCont = [];
@@ -28,7 +28,7 @@ class Github extends Component {
         this.setState({
           repos: repoCont
         });
-      }); 
+      });
     }
   };
 
@@ -46,7 +46,8 @@ class Github extends Component {
             <p className="lead">{repo.name}</p>
           </a>
         </div>
-        {/* <p className="text-sm">{repo.desc}</p> */}
+        <p className="text-sm">{repo.desc}</p>
+        <hr />
       </div>
     ));
 

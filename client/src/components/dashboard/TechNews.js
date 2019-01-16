@@ -47,12 +47,13 @@ class TechNews extends Component {
           </div>
         </div>
         {/* <p className="text-sm">{article.desc}</p> */}
+        <hr />
       </div>
     ));
 
     return (
       <div>
-        <li className="list-group-item p-0 m-0">{newsLog}</li>
+        <li className="list-group-item p-2 m-0">{newsLog}</li>
       </div>
     );
   }

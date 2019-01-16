@@ -45,7 +45,7 @@ img {
 }
 
 .dashboard-cards > .card > .card-body {
-  max-height: 225px;
+  max-height: 275px;
   overflow-y: auto;
 }
 
@@ -61,4 +61,8 @@ img {
 .smallPic {
   height: 40px;
   width: 40px;
+}
+
+#profileHeader {
+  background: url("./img/colorTexture.png") no-repeat;
 }
