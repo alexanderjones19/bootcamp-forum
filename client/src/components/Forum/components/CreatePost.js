@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardBody, Button, Form, FormGroup, Label, Input, CardText } from 'reactstrap';
 import slugify from '../../../utils/slugify';
-import { handleInputChange, handleDiscussionSubmit } from '../../../actions/forumActions';
+import { handleInputChange, handleDiscussionSubmit, toggleCheatSheet } from '../../../actions/forumActions';
 
 class CreatePost extends Component {
 
@@ -17,7 +17,7 @@ class CreatePost extends Component {
     };
     this.props.handleDiscussionSubmit(discussionBody)
       .then(data => {
-        this.props.history.push(`/discussion/${data.forum.forum_slug}/${data.discussion_slug}/${data._id}`);
+        this.props.history.push(`/forum/discussion/${data.forum.forum_slug}/${data.discussion_slug}/${data._id}`);
       });
   }
 
@@ -39,7 +39,8 @@ class CreatePost extends Component {
                 <Label for="txtContent">Content</Label>
                 <Input type="textarea" name="content" id="txtContent" rows={15} onChange={this.props.handleInputChange} />
               </FormGroup>
-                <Button outline color="primary" onClick={this.onSubmit} disabled={this.props.newDiscussionData.title.trim() === '' || this.props.newDiscussionData.content.trim() === ''} >Post</Button>
+                <Button outline color="primary" onClick={this.onSubmit} disabled={this.props.newDiscussionData.title.trim() === '' || this.props.newDiscussionData.content.trim() === ''} >Post</Button> {' '}
+                <Button color="info" onClick={this.props.toggleCheatSheet}>View Markdown Cheat Sheet</Button>
             </Form>
           </CardBody>
         </Card>
@@ -56,7 +57,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   handleInputChange,
-  handleDiscussionSubmit
+  handleDiscussionSubmit,
+  toggleCheatSheet
 };
 
 export default connect(
