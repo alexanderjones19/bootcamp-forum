@@ -7,7 +7,6 @@ import { NavLink as RRNavLink } from 'react-router-dom';
 
 class DiscussionPost extends Component {
   componentDidMount() {
-    console.log('did mount');
     this.props.getAllDiscussions(this.props.match.params.type);
   }
   

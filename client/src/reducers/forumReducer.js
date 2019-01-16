@@ -22,7 +22,8 @@ import{
   CREATE_REPLY,
   CREATE_REPLY_SUCCESS,
   CREATE_REPLY_FAIL,
-  HANDLE_REPLY_INPUT_CHANGE
+  HANDLE_REPLY_INPUT_CHANGE,
+  TOGGLE_CHEAT_SHEET
 } from '../actions/types';
 
 const initialState = {
@@ -40,7 +41,8 @@ const initialState = {
   newReplyForm: {
     reply: ''
   },
-  isReplying: false
+  isReplying: false,
+  modal: false
 };
 
 export default function(state = initialState, action) {
@@ -185,6 +187,11 @@ export default function(state = initialState, action) {
         ...state,
         errors: action.payload,
         loading: false
+      };
+    case TOGGLE_CHEAT_SHEET:
+      return {
+        ...state,
+        modal: !state.modal
       };
     default: {
       return state;
