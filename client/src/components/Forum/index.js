@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from './components/Header';
-import { getAllForums } from '../../actions/forumActions';
+import { getAllForums, toggleCheatSheet } from '../../actions/forumActions';
 import DiscussionPost from './components/DiscussionPost';
 import CreatePost from './components/CreatePost';
 import ViewPost from './components/ViewPost';
@@ -10,7 +10,6 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
  
 class Forum extends Component {
   componentDidMount() {
-    console.log('index did mount');
     this.props.getAllForums();
   }
 
@@ -22,8 +21,8 @@ class Forum extends Component {
     return (
       <div className="container">
 
-        {/* <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Markdown Cheat Sheet</ModalHeader>
+        <Modal isOpen={this.props.forum.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.props.toggleCheatSheet}>Markdown Cheat Sheet</ModalHeader>
           <ModalBody>
           <p>To display code/list/headers you must enclose your text in the following format:</p>
           <h5>Code:</h5>
@@ -77,9 +76,9 @@ class Forum extends Component {
             </pre>
           </ModalBody>
           <ModalFooter>
-            <Button color="warning" onClick={this.toggle}>Close</Button>
+            <Button color="warning" onClick={this.props.toggleCheatSheet}>Close</Button>
           </ModalFooter>
-        </Modal> */}
+        </Modal>
 
         <Router>
           <div>
@@ -99,7 +98,8 @@ class Forum extends Component {
 }
 
 const mapDispatchToProps = {
-  getAllForums
+  getAllForums,
+  toggleCheatSheet
 }
 
 const mapStateToProps = state => ({

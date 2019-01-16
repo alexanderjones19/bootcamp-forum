@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, Input, Button, CardBody, CardFooter } from 'reactstrap';
-import { handleReplyInputChange, handlePostReply, getAllReplies } from '../../../actions/forumActions';
+import { handleReplyInputChange, handlePostReply, getAllReplies, toggleCheatSheet } from '../../../actions/forumActions';
 
 class CreateReply extends Component {
 
@@ -31,7 +31,7 @@ class CreateReply extends Component {
         </CardBody>
         <CardFooter>
           <Button color="success" onClick={this.onSubmit} disabled={this.props.newReplyData.reply.trim() === ''}>Post</Button> {''}
-          <Button color="info" onClick={this.props.displayCheatSheet}>View Markdown Cheat Sheet</Button>
+          <Button color="info" onClick={this.props.toggleCheatSheet}>View Markdown Cheat Sheet</Button>
         </CardFooter>
       </Card>
     )
@@ -46,6 +46,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  toggleCheatSheet,
   handleReplyInputChange,
   handlePostReply,
   getAllReplies
