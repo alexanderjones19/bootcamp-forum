@@ -13,26 +13,28 @@ class Github extends Component {
 
   getRepos = () => {
     const github = this.props.github;
-    githubAPI.getRepos(github).then(res => {
-      console.log(res);
-      let repoCont = [];
-      for (let i = 0; i < 6 || i < res.length; i++) {
-        let repo = {};
-        repo.name = res.data[i].name;
-        repo.url = res.data[i].html_url;
-        repo.desc = res.data[i].description;
-        repoCont.push(repo);
-      }
-      console.log(repoCont);
-      this.setState({
-        repos: repoCont
+    if (github) {
+      githubAPI.getRepos(github).then(res => {
+        console.log(res);
+        let repoCont = [];
+        for (let i = 0; i < 6 || i < res.length; i++) {
+          let repo = {};
+          repo.name = res.data[i].name;
+          repo.url = res.data[i].html_url;
+          repo.desc = res.data[i].description;
+          repoCont.push(repo);
+        }
+        console.log(repoCont);
+        this.setState({
+          repos: repoCont
+        });
       });
-    });
+    }
   };
 
   render() {
-    const repos1 = this.state.repos.map(repo => (
-      <div>
+    const repos1 = this.state.repos.map((repo, index) => (
+      <div key={index}>
         <div className="row">
           {/* <p className="lead">{repo.name}</p> */}
           <a
@@ -44,7 +46,8 @@ class Github extends Component {
             <p className="lead">{repo.name}</p>
           </a>
         </div>
-        {/* <p className="text-sm">{repo.desc}</p> */}
+        <p className="text-sm">{repo.desc}</p>
+        <hr />
       </div>
     ));
 

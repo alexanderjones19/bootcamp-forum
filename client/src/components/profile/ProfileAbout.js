@@ -27,10 +27,8 @@ class ProfileAbout extends Component {
               )}
             </p>
             <h4 className="text-center text-info">Skills:</h4>
-            <div className="row">
-              <div className="d-flex flex-wrap justify-content-center">
-                {skills}
-              </div>
+            <div className="row d-flex flex-wrap justify-content-center">
+              {skills}
             </div>
           </div>
         </div>

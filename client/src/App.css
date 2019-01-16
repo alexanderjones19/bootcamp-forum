@@ -44,6 +44,11 @@ img {
   opacity: 0.9;
 }
 
+.dashboard-cards > .card > .card-body {
+  max-height: 275px;
+  overflow-y: auto;
+}
+
 .latest-profiles-img {
   width: 40px;
   height: 40px;
@@ -56,4 +61,8 @@ img {
 .smallPic {
   height: 40px;
   width: 40px;
+}
+
+#profileHeader {
+  background: url("./img/colorTexture.png") no-repeat;
 }
