@@ -19,11 +19,15 @@ app.use(bodyParser.json());
 //DB Config
 const db = require("./config/keys").mongoURI;
 
-// connect to MongoDB
-mongoose
-  .connect(db)
-  .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log(err));
+if(process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI);
+} else {
+  // connect to MongoDB
+  mongoose
+    .connect(db)
+    .then(() => console.log("MongoDB Connected"))
+    .catch(err => console.log(err));
+}
 
 // Passport middleware
 app.use(passport.initialize());
