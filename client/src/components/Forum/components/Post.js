@@ -14,13 +14,12 @@ let headerStyle = {
 const Post = (props) => {
   let discussionTitleClick = (event) => {
     // event.preventDefault();
-    console.log('discussion props', props);
     props.getOneDiscussion(props.id);
   };
   return (
     <Card style={postStyle}>
       <CardHeader style={headerStyle}>
-        <NavLink to={`/discussion/${props.discussion.forum.forum_slug}/${props.discussion.discussion_slug}/${props.id}`} onClick={discussionTitleClick} tag={RRNavLink}>
+        <NavLink to={`/forum/discussion/${props.discussion.forum.forum_slug}/${props.discussion.discussion_slug}/${props.id}`} onClick={discussionTitleClick} tag={RRNavLink}>
           <h5>{props.discussion.title}</h5>
         </NavLink>
       </CardHeader>

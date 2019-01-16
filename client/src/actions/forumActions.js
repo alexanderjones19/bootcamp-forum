@@ -17,7 +17,12 @@ import {
   GET_REPLIES_FAIL,
   GET_ONE_DISCUSSION,
   GET_ONE_DISCUSSION_SUCCESS,
-  GET_ONE_DISCUSSION_FAIL
+  GET_ONE_DISCUSSION_FAIL,
+  TOGGLE_REPLY_FORM,
+  CREATE_REPLY,
+  CREATE_REPLY_SUCCESS,
+  CREATE_REPLY_FAIL,
+  HANDLE_REPLY_INPUT_CHANGE
 } from './types';
 import forumAPI from '../utils/forumAPI';
 
@@ -86,6 +91,17 @@ export const handleInputChange = (event) => dispatch => {
   });
 };
 
+//handle reply input change
+export const handleReplyInputChange = (event) => dispatch => {
+  const { name, value } = event.target;
+  let payload = {};
+  payload[name] = value;
+  dispatch({
+    type: HANDLE_REPLY_INPUT_CHANGE,
+    payload: payload
+  });
+};
+
 //handle discussion submit using CREATE_DISCUSSION types
 export const handleDiscussionSubmit = (discussionData) => dispatch => {
   let discussionPromise = new Promise(function(resolve, reject) {
@@ -105,7 +121,7 @@ export const handleDiscussionSubmit = (discussionData) => dispatch => {
         })
         reject(err);
       });
-    });
+  });
   return discussionPromise;
 };
 
@@ -143,4 +159,32 @@ export const getOneDiscussion = (discussionId) => dispatch => {
         payload: err
       })
     });
+};
+
+//show reply form
+export const toggleReplyForm = () => dispatch => {
+  dispatch({ type: TOGGLE_REPLY_FORM });
+};
+
+//handle post reply
+export const handlePostReply = (replyData) => dispatch => {
+  let replyPromise = new Promise(function(resolve, reject) {
+    dispatch({ type: CREATE_REPLY });
+    forumAPI.createReply(replyData)
+      .then(res => {
+        dispatch({
+          type: CREATE_REPLY_SUCCESS,
+          payload: res.data
+        })
+        resolve(res.data);
+      })
+      .catch(err => {
+        dispatch({
+          type: CREATE_REPLY_FAIL,
+          payload: err
+        })
+        reject(err);
+      });
+  });
+  return replyPromise;
 };

@@ -17,7 +17,12 @@ import{
   GET_REPLIES_FAIL,
   GET_ONE_DISCUSSION,
   GET_ONE_DISCUSSION_SUCCESS,
-  GET_ONE_DISCUSSION_FAIL
+  GET_ONE_DISCUSSION_FAIL,
+  TOGGLE_REPLY_FORM,
+  CREATE_REPLY,
+  CREATE_REPLY_SUCCESS,
+  CREATE_REPLY_FAIL,
+  HANDLE_REPLY_INPUT_CHANGE
 } from '../actions/types';
 
 const initialState = {
@@ -31,7 +36,11 @@ const initialState = {
   newDiscussionForm: {
     title: '',
     content: ''
-  }
+  },
+  newReplyForm: {
+    reply: ''
+  },
+  isReplying: false
 };
 
 export default function(state = initialState, action) {
@@ -93,6 +102,11 @@ export default function(state = initialState, action) {
         ...state,
         newDiscussionForm: {...state.newDiscussionForm, ...action.payload}
       };
+    case HANDLE_REPLY_INPUT_CHANGE:
+      return {
+        ...state,
+        newReplyForm: {...state.newReplyForm, ...action.payload}
+      };
     case CREATE_DISCUSSION:
       return {
         ...state,
@@ -121,7 +135,7 @@ export default function(state = initialState, action) {
     case GET_REPLIES_SUCCESS:
       return {
         ...state,
-        replies: action.payload.replies,
+        replies: action.payload,
         loading: false
       };
     case GET_REPLIES_FAIL:
@@ -142,6 +156,31 @@ export default function(state = initialState, action) {
         loading: false
       };
     case GET_ONE_DISCUSSION_FAIL:
+      return {
+        ...state,
+        errors: action.payload,
+        loading: false
+      };
+    case TOGGLE_REPLY_FORM:
+      return {
+        ...state,
+        isReplying: !state.isReplying
+      };
+    case CREATE_REPLY:
+      return {
+        ...state,
+        loading: true
+      };
+    case CREATE_REPLY_SUCCESS:
+      let newReplies = [action.payload].concat(state.replies);
+      return {
+        ...state,
+        replies: newReplies,
+        newReplyForm: initialState.newReplyForm,
+        isReplying: false,
+        loading: false
+      };
+    case CREATE_REPLY_FAIL:
       return {
         ...state,
         errors: action.payload,
