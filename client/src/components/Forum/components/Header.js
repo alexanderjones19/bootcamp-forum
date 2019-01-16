@@ -4,7 +4,6 @@ import { Nav, NavItem, NavLink } from "reactstrap";
 import { NavLink as RRNavlink } from "react-router-dom";
 
 const Header = props => {
-  console.log(props);
   return (
     <Nav pills>
       {props.forums.map(forum => (

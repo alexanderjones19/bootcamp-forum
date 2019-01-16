@@ -40,3 +40,6 @@ export const CREATE_REPLY_FAIL = 'CREATE_REPLY_FAIL';
 //input change
 export const HANDLE_INPUT_CHANGE = 'HANDLE_INPUT_CHANGE';
 export const HANDLE_REPLY_INPUT_CHANGE = 'HANDLE_REPLY_INPUT_CHANGE';
+
+//toggle cheat sheet
+export const TOGGLE_CHEAT_SHEET = 'TOGGLE_CHEAT_SHEET';

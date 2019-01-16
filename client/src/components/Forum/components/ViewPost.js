@@ -87,7 +87,7 @@ class ViewPost extends Component {
             <Card key={reply._id} id={reply._id} className="mt-3">
               <CardBody>
                 <blockquote className="blockquote mb-0">
-                  <CardText>{reply.reply}</CardText>
+                  {ReactHtmlParser(convertMarkDownToHtml(reply.reply))}
                   <footer className="blockquote-footer">{reply.user.name}</footer>
                 </blockquote>
               </CardBody>

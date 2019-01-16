@@ -22,7 +22,8 @@ import {
   CREATE_REPLY,
   CREATE_REPLY_SUCCESS,
   CREATE_REPLY_FAIL,
-  HANDLE_REPLY_INPUT_CHANGE
+  HANDLE_REPLY_INPUT_CHANGE,
+  TOGGLE_CHEAT_SHEET
 } from './types';
 import forumAPI from '../utils/forumAPI';
 
@@ -187,4 +188,9 @@ export const handlePostReply = (replyData) => dispatch => {
       });
   });
   return replyPromise;
+};
+
+//toggle cheat sheet
+export const toggleCheatSheet = () => dispatch => {
+  dispatch({ type: TOGGLE_CHEAT_SHEET });
 };
