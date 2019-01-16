@@ -27,7 +27,8 @@ const userLogo = {
 };
 
 const userName = {
-  marginTop: 5
+  marginTop: 5,
+  color: "white"
 };
 
 class ViewPost extends Component {

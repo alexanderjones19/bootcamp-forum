@@ -20,7 +20,7 @@ const Post = (props) => {
     <Card style={postStyle}>
       <CardHeader style={headerStyle}>
         <NavLink to={`/forum/discussion/${props.discussion.forum.forum_slug}/${props.discussion.discussion_slug}/${props.id}`} onClick={discussionTitleClick} tag={RRNavLink}>
-          <h5>{props.discussion.title}</h5>
+          <h5 style={{color: "white"}}>{props.discussion.title}</h5>
         </NavLink>
       </CardHeader>
       <CardBody>
