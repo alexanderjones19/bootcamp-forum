@@ -14,14 +14,18 @@ class TechNews extends Component {
     newsAPI.getNews().then(res => {
       console.log(res);
       let newsCont = [];
-      for (let i = 0; i < res.length; i++) {
+      for (let i = 0; i < res.data.articles.length; i++) {
         let article = {};
         article.title = res.data.articles[i].title;
         article.url = res.data.articles[i].url;
         article.desc = res.data.articles[i].description;
+        console.log("article" + article);
         newsCont.push(article);
       }
-      return newsCont;
+      console.log("newscont" + newsCont);
+      this.setState({
+        articles: newsCont
+      })
     });
   };
 
@@ -29,6 +33,7 @@ class TechNews extends Component {
     const newsLog = this.state.articles.map(article => (
       <div>
         <div className="row">
+        <div className="col-md-12">
           {/* <p className="lead">{article.name}</p> */}
           <a
             href={article.url}
@@ -39,6 +44,7 @@ class TechNews extends Component {
             <p className="lead">{article.title}</p>
           </a>
           <p>{article.desc}</p>
+          </div>
         </div>
         {/* <p className="text-sm">{article.desc}</p> */}
       </div>
