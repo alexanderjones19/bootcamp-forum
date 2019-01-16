@@ -14,31 +14,37 @@ class TechNews extends Component {
     newsAPI.getNews().then(res => {
       console.log(res);
       let newsCont = [];
-      for (let i = 0; i < res.length; i++) {
+      for (let i = 0; i < 8; i++) {
         let article = {};
         article.title = res.data.articles[i].title;
         article.url = res.data.articles[i].url;
         article.desc = res.data.articles[i].description;
+        // console.log("article" + article);
         newsCont.push(article);
       }
-      return newsCont;
+      // console.log("newscont" + newsCont);
+      this.setState({
+        articles: newsCont
+      });
     });
   };
 
   render() {
-    const newsLog = this.state.articles.map(article => (
-      <div>
+    const newsLog = this.state.articles.map((article, index) => (
+      <div key={index}>
         <div className="row">
-          {/* <p className="lead">{article.name}</p> */}
-          <a
-            href={article.url}
-            rel="noopener noreferrer"
-            target="_blank"
-            className="ml-4"
-          >
-            <p className="lead">{article.title}</p>
-          </a>
-          <p>{article.desc}</p>
+          <div className="col-md-12">
+            {/* <p className="lead">{article.name}</p> */}
+            <a
+              href={article.url}
+              rel="noopener noreferrer"
+              target="_blank"
+              className="ml-4"
+            >
+              <p className="lead">{article.title}</p>
+            </a>
+            <p>{article.desc}</p>
+          </div>
         </div>
         {/* <p className="text-sm">{article.desc}</p> */}
       </div>
