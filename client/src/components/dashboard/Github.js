@@ -16,7 +16,7 @@ class Github extends Component {
     githubAPI.getRepos(github).then(res => {
       console.log(res);
       let repoCont = [];
-      for (let i = 0; i < 6 || i < res.length; i++) {
+      for (let i = 0; i < 15 || i < res.length; i++) {
         let repo = {};
         repo.name = res.data[i].name;
         repo.url = res.data[i].html_url;
@@ -31,8 +31,8 @@ class Github extends Component {
   };
 
   render() {
-    const repos1 = this.state.repos.map(repo => (
-      <div>
+    const repos1 = this.state.repos.map((repo, index) => (
+      <div key={index}>
         <div className="row">
           {/* <p className="lead">{repo.name}</p> */}
           <a
