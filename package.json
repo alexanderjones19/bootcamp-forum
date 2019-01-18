@@ -8,8 +8,9 @@
   },
   "scripts": {
     "client-install": "npm install --prefix client",
-    "start": "concurrently \"npm run heroku-server\" \"npm run client\"",
+    "start": "concurrently \"npm run heroku-server\" \"npm run heroku-client\"",
     "heroku-server": "node server.js",
+    "heroku-client": "npm build --prefix client && serve -s client/build",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
@@ -27,6 +28,7 @@
     "mongoose": "^5.4.2",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
+    "serve": "^10.1.1",
     "validator": "^10.10.0"
   },
   "devDependencies": {
