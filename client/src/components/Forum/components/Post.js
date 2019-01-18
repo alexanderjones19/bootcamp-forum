@@ -11,7 +11,6 @@ const Post = (props) => {
     // event.preventDefault();
     props.getOneDiscussion(props.id);
   };
-  console.log('props', props);
   return (
     <Card style={postStyle}>
       <CardBody>
