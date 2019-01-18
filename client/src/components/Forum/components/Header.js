@@ -1,7 +1,7 @@
-import React from 'react';
-import { Nav, NavItem, NavLink } from 'reactstrap';
+import React from "react";
+import { Nav, NavItem, NavLink } from "reactstrap";
 // this makes sure it gives the user a one page application experience
-import { NavLink as RRNavlink } from 'react-router-dom';
+import { NavLink as RRNavlink } from "react-router-dom";
 
 const Header = props => {
   return (
@@ -18,7 +18,7 @@ const Header = props => {
         </NavItem>
       ))}
     </Nav>
-  )
-}
+  );
+};
 
 export default Header;

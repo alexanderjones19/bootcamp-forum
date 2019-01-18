@@ -1,5 +1,6 @@
 # dependencies
 /node_modules
+/client/node_modules
 /.pnp
 .pnp.js
 
@@ -8,6 +9,7 @@
 
 # production
 /build
+/config/keys_dev.js
 
 # misc
 .DS_Store
@@ -18,4 +20,4 @@
 
 npm-debug.log*
 yarn-debug.log*
-yarn-error.log*
+yarn-error.log*node modules

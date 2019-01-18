@@ -2,35 +2,37 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
+import ProfileItem from "./ProfileItem";
 import { getProfiles } from "../../actions/profileActions";
 
 class Profiles extends Component {
-  componentDidMount() {
+  componentDidMount = () => {
     this.props.getProfiles();
-  }
+  };
 
   render() {
     const { profiles, loading } = this.props.profile;
     let profileItems;
 
-    if (profiles === null || loading === true) {
+    if (profiles === null || loading) {
       profileItems = <Spinner />;
     } else {
       if (profiles.length > 0) {
-        profileItems = <h1>Profiles display here</h1>;
+        profileItems = profiles.map(profile => (
+          <ProfileItem key={profile._id} profile={profile} />
+        ));
       } else {
-        profileItems = <h5>No Profiles Found</h5>;
+        profileItems = <h4>No Profiles Found</h4>;
       }
     }
-
     return (
       <div className="profiles">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
-              <h1 className="display-4 text-center">Boot Campers</h1>
+            <div className="col-md-10 m-auto">
+              <h1 className="display-4 text-center">Boosters</h1>
               <p className="lead text-center">
-                Discover and connect with other boot camp people
+                Discover and Connect with fellow Bootcampers
               </p>
               {profileItems}
             </div>

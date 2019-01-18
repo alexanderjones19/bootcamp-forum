@@ -4,9 +4,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
-import ProfileActions from "./ProfileActions";
-import Experience from "./Experience";
-import Education from "./Education";
+import Github from "./Github";
+import TechNews from "./TechNews";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -33,28 +32,80 @@ class Dashboard extends Component {
           <div>
             <p className="lead text-muted">
               Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
+              <Link to="/account" className="btn btn-light ml-4">
+                <i className="fas fa-user-circle text-info mr-1" />
+                Manage Account
+              </Link>
             </p>
-            <ProfileActions />
-            <Experience experience={profile.experience} />
-            <Education education={profile.education} />
+            <hr />
+            <div className="card-deck dashboard-cards">
+              <div className="card">
+                {/* <img
+                  className="card-img-top"
+                  src={require("../../img/matrix.jpg")}
+                  alt="matrix"
+                /> */}
+                <div className="card-header p-3 display-4">Tech News</div>
+                <div className="card-body">
+                  <TechNews />
+                </div>
+              </div>
+              <div className="card">
+                {/* <img
+                  className="card-img-top"
+                  src={require("../../img/matrix.jpg")}
+                  alt="matrix"
+                /> */}
+                <div className="card-header p-3 display-4">Job Board</div>
+                <div className="card-body">
+                  <ul className="list-group list-group-flush">
+                    <li className="list-group-item">Cras justo odio</li>
+                    <li className="list-group-item">Cras justo odio</li>
+                    <li className="list-group-item">Dapibus ac facilisis in</li>
+                    <li className="list-group-item">Vestibulum at eros</li>
+                    <li className="list-group-item">Cras justo odio</li>
+                    <li className="list-group-item">Dapibus ac facilisis in</li>
+                    <li className="list-group-item">Vestibulum at eros</li>
+                    <li className="list-group-item">Dapibus ac facilisis in</li>
+                    <li className="list-group-item">Cras justo odio</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="card">
+                {/* <img
+                  className="card-img-top"
+                  src={require("../../img/matrix.jpg")}
+                  alt="matrix"
+                /> */}
+                <div className="card-header p-3 display-4">My Repos</div>
+                <div className="card-body">
+                  <ul className="list-group list-group-flush">
+                    <Github github={profile.githubusername} />
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <hr />
             <div style={{ marginBottom: "60px" }} />
-            <button
-              onClick={this.onDeleteClick.bind(this)}
-              className="btn btn-danger"
-            >
-              Delete My Account
-            </button>
           </div>
         );
       } else {
         // user is logged in but has no profile
         dashboardContent = (
-          <div>
-            <p className="lead text-muted">Welcome {user.name} </p>
-            <p>C'mon now {user.name}, you need to sharpen up your profile!</p>
-            <Link to="/create-profile" className="btn btn-lg btn-info">
-              Create Profile
-            </Link>
+          <div className="noProfileDashboard">
+            <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <p className="lead text-muted">Welcome {user.name} </p>
+                  <p>
+                    C'mon now {user.name}, you need to sharpen up your profile!
+                  </p>
+                  <Link to="/create-profile" className="btn btn-lg btn-success">
+                    Create Profile
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         );
       }

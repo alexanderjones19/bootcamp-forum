@@ -9,25 +9,16 @@ import CreateReply from './CreateReply';
 
 const commonmark = require('commonmark');
 
-const convertMarkDownToHtml = text => {
-  let reader = new commonmark.Parser();
-  let writer = new commonmark.HtmlRenderer();
-
-  let parsed = reader.parse(text);
-  let result = writer.render(parsed);
-
-  return result;
-}
-
 const userLogo = {
   width: 60,
-  borderRadius: '100%',
+  borderRadius: "100%",
   marginBottom: 10,
   marginRight: 10
 };
 
 const userName = {
-  marginTop: 5
+  marginTop: 5,
+  color: "white"
 };
 
 class ViewPost extends Component {
@@ -57,54 +48,53 @@ class ViewPost extends Component {
       return
     }
   }
+  convertMarkDownToHtml = text => {
+    let reader = new commonmark.Parser();
+    let writer = new commonmark.HtmlRenderer();
+
+    let parsed = reader.parse(text);
+    let result = writer.render(parsed);
+
+    return result;
+  };
 
   render() {
-    if (!this.props.forum.currentDiscussion._id) {
-      return <h1>Loading . . .</h1>
-    }
-    else{
-      return(
-        <div className="mt-3">
-          <Card >
-            <CardHeader>
-              <Media>
-                <Media left href="#">
-                  <Media object src={this.props.userAvatar} style={userLogo}/>
-                </Media>
-                <Media body>
-                  <Media heading>
-                    <Media href="#" style={userName}>{this.props.forum.currentDiscussion.user.name}</Media>
+    return (
+      <div className="mt-3">
+        <Card>
+          <CardHeader>
+            <Media>
+              <Media left href="#">
+                <Media object src={this.props.userAvatar} style={userLogo} />
+              </Media>
+              <Media body>
+                <Media heading>
+                  <Media href="#" style={userName}>
+                    {this.props.forum.currentDiscussion.user.name}
                   </Media>
                 </Media>
               </Media>
-            </CardHeader>        
-            <CardBody>
-              <h4><CardTitle>{this.props.forum.currentDiscussion.title}</CardTitle></h4>
-              {ReactHtmlParser(convertMarkDownToHtml(this.props.forum.currentDiscussion.content))}
-              {/* {this.props.currentDiscussion.content} */}
-            </CardBody>
-            <CardFooter>
-              <Button color="primary" onClick={this.props.toggleReplyForm}>Reply</Button>
-            </CardFooter>
-          </Card>
-          {this.displayTextArea()}
-          {this.props.forum.replies.map(reply => (
-            <Card key={reply._id} id={reply._id} className="mt-3">
-              <CardBody>
-                <blockquote className="blockquote mb-0">
-                  {ReactHtmlParser(convertMarkDownToHtml(reply.reply))}
-                  <footer className="blockquote-footer">{reply.user.name}</footer>
-                </blockquote>
-              </CardBody>
-            </Card>
-          ))}
-        </div>
-      )
-    }
+            </Media>
+          </CardHeader>
+          <CardBody>
+            <h4>
+              <CardTitle>{this.props.forum.currentDiscussion.title}</CardTitle>
+            </h4>
+            {ReactHtmlParser(
+              this.convertMarkDownToHtml(
+                this.props.forum.currentDiscussion.content
+              )
+            )}
+            {/* {this.props.currentDiscussion.content} */}
+          </CardBody>
+          <CardFooter>
+            <Button color="primary">Reply</Button>
+          </CardFooter>
+        </Card>
+      </div>
+    );
   }
 }
-
-
 
 const mapStateToProps = state => ({
   newDiscussionData: state.forum.newDiscussionForm,

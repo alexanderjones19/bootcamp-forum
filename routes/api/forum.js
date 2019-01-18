@@ -1,9 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-// models
 const Forum = require('../../models/Forum');
-// const Discussion = require('../../models/Discussion');
 
 // api/forum
 

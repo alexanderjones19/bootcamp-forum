@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
@@ -52,9 +52,37 @@ class Register extends Component {
       <div className="register">
         <div className="container">
           <div className="row">
+            <div className="d-none d-md-block col-md-4">
+              <div className="card">
+                <div className="card-img-top">
+                  <img
+                    src={require("../../img/showcase.jpg")}
+                    alt="signup"
+                    className="src"
+                  />
+                </div>
+                <div className="card-body">
+                  <p className="lead">
+                    To participate in our discussion forum, you'll need to
+                    create a profile! Don't worry, we don't do anything shady
+                    with your personal info, you can trust us.
+                  </p>
+                </div>
+                <div className="card-footer text-center p-2">
+                  <Link to="/" className="mx-3">
+                    <small>Terms of Service</small>
+                  </Link>
+                  <Link to="/" className="mx-3">
+                    <small>Privacy Policy</small>
+                  </Link>
+                </div>
+              </div>
+            </div>
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Sign Up</h1>
-              <p className="lead text-center">Create your BCForum account</p>
+              <p className="lead text-center">
+                Create your BootCampBooster™ account
+              </p>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="Name"

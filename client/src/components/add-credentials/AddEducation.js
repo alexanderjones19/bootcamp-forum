@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import TextFieldGroup from "../common/TextFieldGroup";
-import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addEducation } from "../../actions/profileActions";
@@ -16,7 +15,6 @@ class AddEducation extends Component {
       from: "",
       to: "",
       current: false,
-      description: "",
       errors: {},
       disabled: false
     };
@@ -41,8 +39,7 @@ class AddEducation extends Component {
       fieldofstudy: this.state.fieldofstudy,
       from: this.state.from,
       to: this.state.to,
-      current: this.state.current,
-      description: this.state.description
+      current: this.state.current
     };
 
     this.props.addEducation(eduData, this.props.history);
@@ -64,13 +61,13 @@ class AddEducation extends Component {
 
     return (
       <div className="add-education">
-        <div className="container">
+        <div className="container mt-2">
           <div className="row">
-            <div className="col-md-8 m-auto">
-              <Link to="/dashboard" className="btn btn-light">
+            <div className="col-md-12 m-auto">
+              {/* <Link to="/account" className="btn btn-light">
                 Go Back
-              </Link>
-              <h1 className="display-4 text-center">Educational Experience</h1>
+              </Link> */}
+              {/* <h1 className="display-4 text-center">Educational Experience</h1> */}
               <p className="lead text-center">Your educational experiences</p>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
@@ -126,14 +123,6 @@ class AddEducation extends Component {
                     Currently enrolled?
                   </label>
                 </div>
-                <TextAreaFieldGroup
-                  placeholder="Program Description"
-                  name="description"
-                  value={this.state.description}
-                  onChange={this.onChange}
-                  error={errors.description}
-                  info="Describe the program of study in as little or much detail as you'd like"
-                />
                 <input
                   type="submit"
                   value="Submit"
