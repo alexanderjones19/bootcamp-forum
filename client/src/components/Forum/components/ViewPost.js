@@ -32,6 +32,7 @@ const userName = {
 
 class ViewPost extends Component {
   componentDidMount() {
+    console.log('props', this.props);
     if (!this.props.forum.currentDiscussion._id) {
       this.props.getOneDiscussion(this.props.match.params.discussionid);
       this.props.getAllReplies(this.props.match.params.discussionid);

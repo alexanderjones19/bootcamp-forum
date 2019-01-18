@@ -17,6 +17,7 @@ class CreatePost extends Component {
     };
     this.props.handleDiscussionSubmit(discussionBody)
       .then(data => {
+        console.log('data', data);
         this.props.history.push(`/forum/discussion/${data.forum.forum_slug}/${data.discussion_slug}/${data._id}`);
       });
   }
