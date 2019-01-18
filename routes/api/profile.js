@@ -27,7 +27,7 @@ router.get(
   (req, res) => {
     const errors = {};
 
-    db.Profile.findOne({ user: req.user.id })
+    Profile.findOne({ user: req.user.id })
       .populate("user", ["name", "avatar"])
       .then(profile => {
         if (!profile) {
@@ -46,7 +46,7 @@ router.get(
 router.get("/all", (req, res) => {
   const errors = {};
 
-  db.Profile.find()
+  Profile.find()
     .populate("user", ["name", "avatar"])
     .then(profiles => {
       if (!profiles) {
@@ -64,7 +64,7 @@ router.get("/all", (req, res) => {
 router.get("/handle/:handle", (req, res) => {
   const errors = {};
 
-  db.Profile.findOne({ handle: req.params.handle })
+  Profile.findOne({ handle: req.params.handle })
     .populate("user", ["name", "avatar"])
     .then(profile => {
       if (!profile) {
@@ -82,7 +82,7 @@ router.get("/handle/:handle", (req, res) => {
 router.get("/user/:user_id", (req, res) => {
   const errors = {};
 
-  db.Profile.findOne({ user: req.params.user_id })
+  Profile.findOne({ user: req.params.user_id })
     .populate("user", ["name", "avatar"])
     .then(profile => {
       if (!profile) {
@@ -134,7 +134,7 @@ router.post(
     if (req.body.github) profileFields.social.github = req.body.github;
     if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
 
-    db.Profile.findOne({ user: req.user.id }).then(profile => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
         // update profile
         Profile.findOneAndUpdate(
@@ -174,7 +174,7 @@ router.post(
       return res.status(400).json(errors);
     }
 
-    db.Profile.findOne({ user: req.user.id }).then(profile => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
       const newExp = {
         title: req.body.title,
         company: req.body.company,
@@ -207,7 +207,7 @@ router.post(
       return res.status(400).json(errors);
     }
 
-    db.Profile.findOne({ user: req.user.id }).then(profile => {
+    Profile.findOne({ user: req.user.id }).then(profile => {
       const newEdu = {
         school: req.body.school,
         degree: req.body.degree,
@@ -233,7 +233,7 @@ router.delete(
   "/experience/:exp_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    db.Profile.findOne({ user: req.user.id })
+    Profile.findOne({ user: req.user.id })
       .then(profile => {
         // Get remove index
         const removeIndex = profile.experience
@@ -257,7 +257,7 @@ router.delete(
   "/education/:edu_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    db.Profile.findOne({ user: req.user.id })
+    Profile.findOne({ user: req.user.id })
       .then(profile => {
         // Get remove index
         const removeIndex = profile.education
