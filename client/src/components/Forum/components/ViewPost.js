@@ -23,7 +23,6 @@ const userName = {
 
 class ViewPost extends Component {
   componentDidMount() {
-    console.log('props', this.props);
     if (!this.props.forum.currentDiscussion._id) {
       this.props.getOneDiscussion(this.props.match.params.discussionid);
       this.props.getAllReplies(this.props.match.params.discussionid);
@@ -48,6 +47,7 @@ class ViewPost extends Component {
       return
     }
   }
+
   convertMarkDownToHtml = text => {
     let reader = new commonmark.Parser();
     let writer = new commonmark.HtmlRenderer();
@@ -59,40 +59,56 @@ class ViewPost extends Component {
   };
 
   render() {
-    return (
-      <div className="mt-3">
-        <Card>
-          <CardHeader>
-            <Media>
-              <Media left href="#">
-                <Media object src={this.props.userAvatar} style={userLogo} />
-              </Media>
-              <Media body>
-                <Media heading>
-                  <Media href="#" style={userName}>
-                    {this.props.forum.currentDiscussion.user.name}
+    if (!this.props.forum.currentDiscussion._id) {
+      return <h1>Loading . . .</h1>
+    }
+    else {
+      return (
+        <div className="mt-3">
+          <Card>
+            <CardHeader>
+              <Media>
+                <Media left href="#">
+                  <Media object src={this.props.userAvatar} style={userLogo} />
+                </Media>
+                <Media body>
+                  <Media heading>
+                    <Media href="#" style={userName}>
+                      {this.props.forum.currentDiscussion.user.name}
+                    </Media>
                   </Media>
                 </Media>
               </Media>
-            </Media>
-          </CardHeader>
-          <CardBody>
-            <h4>
-              <CardTitle>{this.props.forum.currentDiscussion.title}</CardTitle>
-            </h4>
-            {ReactHtmlParser(
-              this.convertMarkDownToHtml(
-                this.props.forum.currentDiscussion.content
-              )
-            )}
-            {/* {this.props.currentDiscussion.content} */}
-          </CardBody>
-          <CardFooter>
-            <Button color="primary">Reply</Button>
-          </CardFooter>
-        </Card>
-      </div>
-    );
+            </CardHeader>
+            <CardBody>
+              <h4>
+                <CardTitle>{this.props.forum.currentDiscussion.title}</CardTitle>
+              </h4>
+              {ReactHtmlParser(
+                this.convertMarkDownToHtml(
+                  this.props.forum.currentDiscussion.content
+                )
+              )}
+              {/* {this.props.currentDiscussion.content} */}
+            </CardBody>
+            <CardFooter>
+              <Button color="primary" onClick={this.props.toggleReplyForm}>Reply</Button>
+            </CardFooter>
+          </Card>
+          {this.displayTextArea()}
+          {this.props.forum.replies.map(reply => (
+            <Card key={reply._id} id={reply._id} className="mt-3">
+              <CardBody>
+                <blockquote className="blockquote mb-0">
+                  {ReactHtmlParser(this.convertMarkDownToHtml(reply.reply))}
+                  <footer className="blockquote-footer">{reply.user.name}</footer>
+                </blockquote>
+              </CardBody>
+            </Card>
+          ))}
+        </div>
+      )
+    }
   }
 }
 
